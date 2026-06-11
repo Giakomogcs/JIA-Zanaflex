@@ -6540,10 +6540,11 @@
         try {
           showRagBusy(`Removendo "${title}"... apagando do Drive e do vetor.`);
           setStatus(`Removendo "${title}"...`, "warning");
-          const resp = await fetch(
-            `${RAG_DOCS_DELETE_URL}?file_id=${encodeURIComponent(fileId)}`,
-            { method: "DELETE" },
-          );
+          const resp = await fetch(RAG_DOCS_DELETE_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ file_id: fileId }),
+          });
           if (!resp.ok) throw new Error("Delete failed");
           setStatus(`Documento "${title}" removido.`, "success");
           await loadRagDocs();
