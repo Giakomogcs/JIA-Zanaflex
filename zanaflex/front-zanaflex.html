@@ -1648,7 +1648,9 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        transition: color 0.15s, border-color 0.15s;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
       }
       .admin-tab:hover {
         color: var(--text-primary);
@@ -2570,8 +2572,8 @@
             </div>
             <div class="empty-title">Assistente de Instruções de Trabalho</div>
             <div class="empty-subtitle">
-              Pergunte sobre IT's, procedimentos e documentação técnica. As respostas
-              são baseadas nos documentos que você tem acesso.
+              Pergunte sobre IT's, procedimentos e documentação técnica. As
+              respostas são baseadas nos documentos que você tem acesso.
             </div>
           </div>
 
@@ -2673,14 +2675,25 @@
           </div>
 
           <div class="admin-tabs">
-            <button class="admin-tab active" type="button" onclick="showUsersPage()">
-              <i data-lucide="users" style="width:14px;height:14px"></i> Usuários
+            <button
+              class="admin-tab active"
+              type="button"
+              onclick="showUsersPage()"
+            >
+              <i data-lucide="users" style="width: 14px; height: 14px"></i>
+              Usuários
             </button>
             <button class="admin-tab" type="button" onclick="showTeamsPage()">
-              <i data-lucide="shield" style="width:14px;height:14px"></i> Equipes
+              <i data-lucide="shield" style="width: 14px; height: 14px"></i>
+              Equipes
             </button>
-            <button class="admin-tab" type="button" onclick="showCategoriesPage()">
-              <i data-lucide="folder" style="width:14px;height:14px"></i> Categorias
+            <button
+              class="admin-tab"
+              type="button"
+              onclick="showCategoriesPage()"
+            >
+              <i data-lucide="folder" style="width: 14px; height: 14px"></i>
+              Categorias
             </button>
           </div>
 
@@ -2935,7 +2948,10 @@
                   border: none;
                 "
               >
-                <i data-lucide="refresh-ccw" style="width: 14px; height: 14px"></i>
+                <i
+                  data-lucide="refresh-ccw"
+                  style="width: 14px; height: 14px"
+                ></i>
                 Reprocessar todos
               </button>
               <button
@@ -3045,8 +3061,12 @@
             >
               <thead>
                 <tr>
-                  <th class="users-th" style="width:36px;text-align:center">
-                    <input type="checkbox" id="ragDocsSelectAll" title="Selecionar todos" />
+                  <th class="users-th" style="width: 36px; text-align: center">
+                    <input
+                      type="checkbox"
+                      id="ragDocsSelectAll"
+                      title="Selecionar todos"
+                    />
                   </th>
                   <th class="users-th">Título</th>
                   <th class="users-th">Categoria</th>
@@ -3073,13 +3093,26 @@
                 z-index: 5;
               "
             >
-              <span id="ragDocsBulkCount" style="font-size: 13px; color: var(--text-secondary)">0 selecionado(s)</span>
+              <span
+                id="ragDocsBulkCount"
+                style="font-size: 13px; color: var(--text-secondary)"
+                >0 selecionado(s)</span
+              >
               <button
                 id="ragReindexSelectedBtn"
                 class="btn-modal btn-confirm"
-                style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; padding: 8px 14px"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 13px;
+                  padding: 8px 14px;
+                "
               >
-                <i data-lucide="refresh-cw" style="width: 14px; height: 14px"></i>
+                <i
+                  data-lucide="refresh-cw"
+                  style="width: 14px; height: 14px"
+                ></i>
                 Reprocessar selecionados
               </button>
             </div>
@@ -3106,46 +3139,105 @@
                 id="categoriesBackBtn"
                 title="Voltar ao chat"
               >
-                <i data-lucide="arrow-left" style="width: 18px; height: 18px"></i>
+                <i
+                  data-lucide="arrow-left"
+                  style="width: 18px; height: 18px"
+                ></i>
               </button>
-              <h2 style="margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--text-primary)">
+              <h2
+                style="
+                  margin: 0;
+                  font-size: 1.3rem;
+                  font-weight: 700;
+                  color: var(--text-primary);
+                "
+              >
                 Administração
-                <span id="categoriesCount" style="font-size: 13px; color: var(--text-secondary); font-weight: 400"></span>
+                <span
+                  id="categoriesCount"
+                  style="
+                    font-size: 13px;
+                    color: var(--text-secondary);
+                    font-weight: 400;
+                  "
+                ></span>
               </h2>
             </div>
             <div style="display: flex; gap: 8px">
-              <button class="btn-modal btn-cancel" id="categoriesRefreshBtn" title="Recarregar"
-                style="display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:8px 12px">
-                <i data-lucide="refresh-cw" style="width:14px;height:14px"></i>
+              <button
+                class="btn-modal btn-cancel"
+                id="categoriesRefreshBtn"
+                title="Recarregar"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 13px;
+                  padding: 8px 12px;
+                "
+              >
+                <i
+                  data-lucide="refresh-cw"
+                  style="width: 14px; height: 14px"
+                ></i>
               </button>
-              <button class="btn-modal btn-confirm" id="addCategoryBtn"
-                style="display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:8px 16px">
-                <i data-lucide="plus" style="width:14px;height:14px"></i>
+              <button
+                class="btn-modal btn-confirm"
+                id="addCategoryBtn"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 13px;
+                  padding: 8px 16px;
+                "
+              >
+                <i data-lucide="plus" style="width: 14px; height: 14px"></i>
                 Nova Categoria
               </button>
             </div>
           </div>
           <div class="admin-tabs">
             <button class="admin-tab" type="button" onclick="showUsersPage()">
-              <i data-lucide="users" style="width:14px;height:14px"></i> Usuários
+              <i data-lucide="users" style="width: 14px; height: 14px"></i>
+              Usuários
             </button>
             <button class="admin-tab" type="button" onclick="showTeamsPage()">
-              <i data-lucide="shield" style="width:14px;height:14px"></i> Equipes
+              <i data-lucide="shield" style="width: 14px; height: 14px"></i>
+              Equipes
             </button>
-            <button class="admin-tab active" type="button" onclick="showCategoriesPage()">
-              <i data-lucide="folder" style="width:14px;height:14px"></i> Categorias
+            <button
+              class="admin-tab active"
+              type="button"
+              onclick="showCategoriesPage()"
+            >
+              <i data-lucide="folder" style="width: 14px; height: 14px"></i>
+              Categorias
             </button>
           </div>
-          <div style="flex:1;overflow:auto;padding:16px 24px">
-            <div id="categoriesLoading" style="display:none;text-align:center;padding:40px;color:var(--text-secondary)">Carregando...</div>
-            <table id="categoriesTable" style="width:100%;border-collapse:collapse;display:none">
+          <div style="flex: 1; overflow: auto; padding: 16px 24px">
+            <div
+              id="categoriesLoading"
+              style="
+                display: none;
+                text-align: center;
+                padding: 40px;
+                color: var(--text-secondary);
+              "
+            >
+              Carregando...
+            </div>
+            <table
+              id="categoriesTable"
+              style="width: 100%; border-collapse: collapse; display: none"
+            >
               <thead>
                 <tr>
                   <th class="users-th">Código</th>
                   <th class="users-th">Nome</th>
                   <th class="users-th">Descrição</th>
                   <th class="users-th">Pasta Drive</th>
-                  <th class="users-th" style="text-align:right">Ações</th>
+                  <th class="users-th" style="text-align: right">Ações</th>
                 </tr>
               </thead>
               <tbody id="categoriesTableBody"></tbody>
@@ -3153,41 +3245,196 @@
           </div>
 
           <!-- inline form panel -->
-          <div id="categoryFormPanel" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,0.4);z-index:20;align-items:center;justify-content:center;padding:20px">
-            <div style="background:var(--bg-chat);border-radius:12px;max-width:520px;width:100%;padding:24px;box-shadow:0 8px 32px rgba(0,0,0,0.2)">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-                <h3 id="categoryFormTitle" style="margin:0;font-size:1.1rem;font-weight:700">Nova Categoria</h3>
-                <button id="categoryFormCloseBtn" class="users-back-btn" title="Fechar">
-                  <i data-lucide="x" style="width:18px;height:18px"></i>
+          <div
+            id="categoryFormPanel"
+            style="
+              display: none;
+              position: absolute;
+              inset: 0;
+              background: rgba(0, 0, 0, 0.4);
+              z-index: 20;
+              align-items: center;
+              justify-content: center;
+              padding: 20px;
+            "
+          >
+            <div
+              style="
+                background: var(--bg-chat);
+                border-radius: 12px;
+                max-width: 520px;
+                width: 100%;
+                padding: 24px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 16px;
+                "
+              >
+                <h3
+                  id="categoryFormTitle"
+                  style="margin: 0; font-size: 1.1rem; font-weight: 700"
+                >
+                  Nova Categoria
+                </h3>
+                <button
+                  id="categoryFormCloseBtn"
+                  class="users-back-btn"
+                  title="Fechar"
+                >
+                  <i data-lucide="x" style="width: 18px; height: 18px"></i>
                 </button>
               </div>
               <form id="categoryForm">
-                <div style="margin-bottom:12px">
-                  <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px">Código *</label>
-                  <input id="categoryCodeInput" type="text" required maxlength="32" placeholder="Ex: IT"
-                    style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:0.95rem;text-transform:uppercase">
-                  <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px">Identificador curto. Será normalizado para MAIÚSCULAS.</div>
+                <div style="margin-bottom: 12px">
+                  <label
+                    style="
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                      display: block;
+                      margin-bottom: 6px;
+                    "
+                    >Código *</label
+                  >
+                  <input
+                    id="categoryCodeInput"
+                    type="text"
+                    required
+                    maxlength="32"
+                    placeholder="Ex: IT"
+                    style="
+                      width: 100%;
+                      padding: 8px 12px;
+                      border: 1px solid var(--border);
+                      border-radius: 8px;
+                      font-size: 0.95rem;
+                      text-transform: uppercase;
+                    "
+                  />
+                  <div
+                    style="
+                      font-size: 0.75rem;
+                      color: var(--text-secondary);
+                      margin-top: 4px;
+                    "
+                  >
+                    Identificador curto. Será normalizado para MAIÚSCULAS.
+                  </div>
                 </div>
-                <div style="margin-bottom:12px">
-                  <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px">Nome *</label>
-                  <input id="categoryNameInput" type="text" required maxlength="120"
-                    style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:0.95rem">
+                <div style="margin-bottom: 12px">
+                  <label
+                    style="
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                      display: block;
+                      margin-bottom: 6px;
+                    "
+                    >Nome *</label
+                  >
+                  <input
+                    id="categoryNameInput"
+                    type="text"
+                    required
+                    maxlength="120"
+                    style="
+                      width: 100%;
+                      padding: 8px 12px;
+                      border: 1px solid var(--border);
+                      border-radius: 8px;
+                      font-size: 0.95rem;
+                    "
+                  />
                 </div>
-                <div style="margin-bottom:16px">
-                  <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px">Descrição</label>
-                  <textarea id="categoryDescInput" rows="3" maxlength="500"
-                    style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:0.95rem;resize:vertical;font-family:inherit"></textarea>
+                <div style="margin-bottom: 16px">
+                  <label
+                    style="
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                      display: block;
+                      margin-bottom: 6px;
+                    "
+                    >Descrição</label
+                  >
+                  <textarea
+                    id="categoryDescInput"
+                    rows="3"
+                    maxlength="500"
+                    style="
+                      width: 100%;
+                      padding: 8px 12px;
+                      border: 1px solid var(--border);
+                      border-radius: 8px;
+                      font-size: 0.95rem;
+                      resize: vertical;
+                      font-family: inherit;
+                    "
+                  ></textarea>
                 </div>
-                <div style="margin-bottom:16px">
-                  <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px">ID da pasta no Google Drive</label>
-                  <input id="categoryDriveFolderInput" type="text" maxlength="128" placeholder="Ex: 190YSTnAbApZVV0yDGbNM7u82pT9ckQ9V"
-                    style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:0.95rem;font-family:monospace">
-                  <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px">Cole o ID da pasta dedicada a esta categoria. Os arquivos enviados aqui ficarão nessa pasta e a re-indexação só varrerá ela.</div>
+                <div style="margin-bottom: 16px">
+                  <label
+                    style="
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                      display: block;
+                      margin-bottom: 6px;
+                    "
+                    >ID da pasta no Google Drive</label
+                  >
+                  <input
+                    id="categoryDriveFolderInput"
+                    type="text"
+                    maxlength="128"
+                    placeholder="Ex: 190YSTnAbApZVV0yDGbNM7u82pT9ckQ9V"
+                    style="
+                      width: 100%;
+                      padding: 8px 12px;
+                      border: 1px solid var(--border);
+                      border-radius: 8px;
+                      font-size: 0.95rem;
+                      font-family: monospace;
+                    "
+                  />
+                  <div
+                    style="
+                      font-size: 0.75rem;
+                      color: var(--text-secondary);
+                      margin-top: 4px;
+                    "
+                  >
+                    Cole o ID da pasta dedicada a esta categoria. Os arquivos
+                    enviados aqui ficarão nessa pasta e a re-indexação só
+                    varrerá ela.
+                  </div>
                 </div>
-                <div id="categoryFormError" style="display:none;color:#dc2626;font-size:0.85rem;margin-bottom:12px"></div>
-                <div style="display:flex;justify-content:flex-end;gap:8px">
-                  <button type="button" id="categoryFormCancelBtn" class="btn-modal btn-cancel">Cancelar</button>
-                  <button type="submit" id="categoryFormSaveBtn" class="btn-modal btn-confirm">Salvar</button>
+                <div
+                  id="categoryFormError"
+                  style="
+                    display: none;
+                    color: #dc2626;
+                    font-size: 0.85rem;
+                    margin-bottom: 12px;
+                  "
+                ></div>
+                <div style="display: flex; justify-content: flex-end; gap: 8px">
+                  <button
+                    type="button"
+                    id="categoryFormCancelBtn"
+                    class="btn-modal btn-cancel"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    id="categoryFormSaveBtn"
+                    class="btn-modal btn-confirm"
+                  >
+                    Salvar
+                  </button>
                 </div>
               </form>
             </div>
@@ -3209,47 +3456,114 @@
         >
           <div class="users-page-header">
             <div style="display: flex; align-items: center; gap: 12px">
-              <button class="users-back-btn" id="teamsBackBtn" title="Voltar ao chat">
-                <i data-lucide="arrow-left" style="width: 18px; height: 18px"></i>
+              <button
+                class="users-back-btn"
+                id="teamsBackBtn"
+                title="Voltar ao chat"
+              >
+                <i
+                  data-lucide="arrow-left"
+                  style="width: 18px; height: 18px"
+                ></i>
               </button>
-              <h2 style="margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--text-primary)">
+              <h2
+                style="
+                  margin: 0;
+                  font-size: 1.3rem;
+                  font-weight: 700;
+                  color: var(--text-primary);
+                "
+              >
                 Administração
-                <span id="teamsCount" style="font-size: 13px; color: var(--text-secondary); font-weight: 400"></span>
+                <span
+                  id="teamsCount"
+                  style="
+                    font-size: 13px;
+                    color: var(--text-secondary);
+                    font-weight: 400;
+                  "
+                ></span>
               </h2>
             </div>
             <div style="display: flex; gap: 8px">
-              <button class="btn-modal btn-cancel" id="teamsRefreshBtn" title="Recarregar"
-                style="display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:8px 12px">
-                <i data-lucide="refresh-cw" style="width:14px;height:14px"></i>
+              <button
+                class="btn-modal btn-cancel"
+                id="teamsRefreshBtn"
+                title="Recarregar"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 13px;
+                  padding: 8px 12px;
+                "
+              >
+                <i
+                  data-lucide="refresh-cw"
+                  style="width: 14px; height: 14px"
+                ></i>
               </button>
-              <button class="btn-modal btn-confirm" id="addTeamBtn"
-                style="display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:8px 16px">
-                <i data-lucide="plus" style="width:14px;height:14px"></i>
+              <button
+                class="btn-modal btn-confirm"
+                id="addTeamBtn"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 13px;
+                  padding: 8px 16px;
+                "
+              >
+                <i data-lucide="plus" style="width: 14px; height: 14px"></i>
                 Nova Equipe
               </button>
             </div>
           </div>
           <div class="admin-tabs">
             <button class="admin-tab" type="button" onclick="showUsersPage()">
-              <i data-lucide="users" style="width:14px;height:14px"></i> Usuários
+              <i data-lucide="users" style="width: 14px; height: 14px"></i>
+              Usuários
             </button>
-            <button class="admin-tab active" type="button" onclick="showTeamsPage()">
-              <i data-lucide="shield" style="width:14px;height:14px"></i> Equipes
+            <button
+              class="admin-tab active"
+              type="button"
+              onclick="showTeamsPage()"
+            >
+              <i data-lucide="shield" style="width: 14px; height: 14px"></i>
+              Equipes
             </button>
-            <button class="admin-tab" type="button" onclick="showCategoriesPage()">
-              <i data-lucide="folder" style="width:14px;height:14px"></i> Categorias
+            <button
+              class="admin-tab"
+              type="button"
+              onclick="showCategoriesPage()"
+            >
+              <i data-lucide="folder" style="width: 14px; height: 14px"></i>
+              Categorias
             </button>
           </div>
-          <div style="flex:1;overflow:auto;padding:16px 24px">
-            <div id="teamsLoading" style="display:none;text-align:center;padding:40px;color:var(--text-secondary)">Carregando...</div>
-            <table id="teamsTable" style="width:100%;border-collapse:collapse;display:none">
+          <div style="flex: 1; overflow: auto; padding: 16px 24px">
+            <div
+              id="teamsLoading"
+              style="
+                display: none;
+                text-align: center;
+                padding: 40px;
+                color: var(--text-secondary);
+              "
+            >
+              Carregando...
+            </div>
+            <table
+              id="teamsTable"
+              style="width: 100%; border-collapse: collapse; display: none"
+            >
               <thead>
                 <tr>
                   <th class="users-th">Nome</th>
                   <th class="users-th">Descrição</th>
                   <th class="users-th">Membros</th>
                   <th class="users-th">Categorias</th>
-                  <th class="users-th" style="text-align:right">Ações</th>
+                  <th class="users-th" style="text-align: right">Ações</th>
                 </tr>
               </thead>
               <tbody id="teamsTableBody"></tbody>
@@ -3257,53 +3571,186 @@
           </div>
 
           <!-- team form panel -->
-          <div id="teamFormPanel" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,0.4);z-index:20;align-items:center;justify-content:center;padding:20px;overflow:auto">
-            <div style="background:var(--bg-chat);border-radius:12px;max-width:640px;width:100%;padding:24px;box-shadow:0 8px 32px rgba(0,0,0,0.2);max-height:90vh;overflow:auto">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-                <h3 id="teamFormTitle" style="margin:0;font-size:1.1rem;font-weight:700">Nova Equipe</h3>
-                <button id="teamFormCloseBtn" class="users-back-btn" title="Fechar">
-                  <i data-lucide="x" style="width:18px;height:18px"></i>
+          <div
+            id="teamFormPanel"
+            style="
+              display: none;
+              position: absolute;
+              inset: 0;
+              background: rgba(0, 0, 0, 0.4);
+              z-index: 20;
+              align-items: center;
+              justify-content: center;
+              padding: 20px;
+              overflow: auto;
+            "
+          >
+            <div
+              style="
+                background: var(--bg-chat);
+                border-radius: 12px;
+                max-width: 640px;
+                width: 100%;
+                padding: 24px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                max-height: 90vh;
+                overflow: auto;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 16px;
+                "
+              >
+                <h3
+                  id="teamFormTitle"
+                  style="margin: 0; font-size: 1.1rem; font-weight: 700"
+                >
+                  Nova Equipe
+                </h3>
+                <button
+                  id="teamFormCloseBtn"
+                  class="users-back-btn"
+                  title="Fechar"
+                >
+                  <i data-lucide="x" style="width: 18px; height: 18px"></i>
                 </button>
               </div>
               <form id="teamForm">
-                <div style="margin-bottom:12px">
-                  <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px">Nome *</label>
-                  <input id="teamNameInput" type="text" required maxlength="120"
-                    style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:0.95rem">
+                <div style="margin-bottom: 12px">
+                  <label
+                    style="
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                      display: block;
+                      margin-bottom: 6px;
+                    "
+                    >Nome *</label
+                  >
+                  <input
+                    id="teamNameInput"
+                    type="text"
+                    required
+                    maxlength="120"
+                    style="
+                      width: 100%;
+                      padding: 8px 12px;
+                      border: 1px solid var(--border);
+                      border-radius: 8px;
+                      font-size: 0.95rem;
+                    "
+                  />
                 </div>
-                <div style="margin-bottom:12px">
-                  <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px">Descrição</label>
-                  <textarea id="teamDescInput" rows="2" maxlength="500"
-                    style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:0.95rem;resize:vertical;font-family:inherit"></textarea>
+                <div style="margin-bottom: 12px">
+                  <label
+                    style="
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                      display: block;
+                      margin-bottom: 6px;
+                    "
+                    >Descrição</label
+                  >
+                  <textarea
+                    id="teamDescInput"
+                    rows="2"
+                    maxlength="500"
+                    style="
+                      width: 100%;
+                      padding: 8px 12px;
+                      border: 1px solid var(--border);
+                      border-radius: 8px;
+                      font-size: 0.95rem;
+                      resize: vertical;
+                      font-family: inherit;
+                    "
+                  ></textarea>
                 </div>
-                <div style="margin-bottom:12px">
-                  <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px">Membros</label>
+                <div style="margin-bottom: 12px">
+                  <label
+                    style="
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                      display: block;
+                      margin-bottom: 6px;
+                    "
+                    >Membros</label
+                  >
                   <div class="ms-wrapper" id="teamMembersWrapper">
-                    <div class="ms-trigger" id="teamMembersTrigger" tabindex="0">
-                      <span class="ms-placeholder">Selecione os usuários...</span>
+                    <div
+                      class="ms-trigger"
+                      id="teamMembersTrigger"
+                      tabindex="0"
+                    >
+                      <span class="ms-placeholder"
+                        >Selecione os usuários...</span
+                      >
                     </div>
                     <div class="ms-dropdown" id="teamMembersDropdown">
-                      <input class="ms-search" id="teamMembersSearch" type="text" placeholder="Buscar usuário...">
+                      <input
+                        class="ms-search"
+                        id="teamMembersSearch"
+                        type="text"
+                        placeholder="Buscar usuário..."
+                      />
                       <div class="ms-options" id="teamMembersOptions"></div>
                     </div>
                   </div>
                 </div>
-                <div style="margin-bottom:16px">
-                  <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px">Categorias acessíveis</label>
+                <div style="margin-bottom: 16px">
+                  <label
+                    style="
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                      display: block;
+                      margin-bottom: 6px;
+                    "
+                    >Categorias acessíveis</label
+                  >
                   <div class="ms-wrapper" id="teamCatsWrapper">
                     <div class="ms-trigger" id="teamCatsTrigger" tabindex="0">
-                      <span class="ms-placeholder">Selecione as categorias...</span>
+                      <span class="ms-placeholder"
+                        >Selecione as categorias...</span
+                      >
                     </div>
                     <div class="ms-dropdown" id="teamCatsDropdown">
-                      <input class="ms-search" id="teamCatsSearch" type="text" placeholder="Buscar...">
+                      <input
+                        class="ms-search"
+                        id="teamCatsSearch"
+                        type="text"
+                        placeholder="Buscar..."
+                      />
                       <div class="ms-options" id="teamCatsOptions"></div>
                     </div>
                   </div>
                 </div>
-                <div id="teamFormError" style="display:none;color:#dc2626;font-size:0.85rem;margin-bottom:12px"></div>
-                <div style="display:flex;justify-content:flex-end;gap:8px">
-                  <button type="button" id="teamFormCancelBtn" class="btn-modal btn-cancel">Cancelar</button>
-                  <button type="submit" id="teamFormSaveBtn" class="btn-modal btn-confirm">Salvar</button>
+                <div
+                  id="teamFormError"
+                  style="
+                    display: none;
+                    color: #dc2626;
+                    font-size: 0.85rem;
+                    margin-bottom: 12px;
+                  "
+                ></div>
+                <div style="display: flex; justify-content: flex-end; gap: 8px">
+                  <button
+                    type="button"
+                    id="teamFormCancelBtn"
+                    class="btn-modal btn-cancel"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    id="teamFormSaveBtn"
+                    class="btn-modal btn-confirm"
+                  >
+                    Salvar
+                  </button>
                 </div>
               </form>
             </div>
@@ -3392,24 +3839,88 @@
     </div>
 
     <!-- Upload Document Modal (category picker) -->
-    <div class="confirm-modal-backdrop" id="uploadDocModal" style="display:none">
+    <div
+      class="confirm-modal-backdrop"
+      id="uploadDocModal"
+      style="display: none"
+    >
       <div class="confirm-modal" style="max-width: 460px">
         <h3 class="confirm-title">Adicionar Documento ao RAG</h3>
-        <p class="confirm-text" id="uploadDocFileLabel" style="word-break:break-all"></p>
-        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:16px">
+        <p
+          class="confirm-text"
+          id="uploadDocFileLabel"
+          style="word-break: break-all"
+        ></p>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 16px;
+          "
+        >
           <div>
-            <label for="uploadDocCategorySelect" style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;color:var(--text-secondary)">Categoria</label>
-            <select id="uploadDocCategorySelect" style="width:100%;padding:10px 12px;border-radius:8px;background:var(--bg-input,#1f1f1f);color:var(--text-primary);border:1px solid var(--border-color);font-size:0.95rem"></select>
-            <div id="uploadDocCategoryHint" style="font-size:0.78rem;color:var(--text-secondary);margin-top:6px;line-height:1.4"></div>
+            <label
+              for="uploadDocCategorySelect"
+              style="
+                font-size: 0.85rem;
+                font-weight: 600;
+                display: block;
+                margin-bottom: 6px;
+                color: var(--text-secondary);
+              "
+              >Categoria</label
+            >
+            <select
+              id="uploadDocCategorySelect"
+              style="
+                width: 100%;
+                padding: 10px 12px;
+                border-radius: 8px;
+                background: var(--bg-input, #1f1f1f);
+                color: var(--text-primary);
+                border: 1px solid var(--border-color);
+                font-size: 0.95rem;
+              "
+            ></select>
+            <div
+              id="uploadDocCategoryHint"
+              style="
+                font-size: 0.78rem;
+                color: var(--text-secondary);
+                margin-top: 6px;
+                line-height: 1.4;
+              "
+            ></div>
           </div>
-          <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border-color);border-radius:8px;padding:10px 12px;font-size:0.8rem;color:var(--text-secondary);line-height:1.45">
-            Se já existir um arquivo com o mesmo nome na pasta da categoria, ele será <strong>substituído</strong> e somente esse documento será re-indexado no RAG.
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.04);
+              border: 1px solid var(--border-color);
+              border-radius: 8px;
+              padding: 10px 12px;
+              font-size: 0.8rem;
+              color: var(--text-secondary);
+              line-height: 1.45;
+            "
+          >
+            Se já existir um arquivo com o mesmo nome na pasta da categoria, ele
+            será <strong>substituído</strong> e somente esse documento será
+            re-indexado no RAG.
           </div>
         </div>
-        <div class="err-msg" id="uploadDocModalError" style="display:none"></div>
+        <div
+          class="err-msg"
+          id="uploadDocModalError"
+          style="display: none"
+        ></div>
         <div class="confirm-actions">
-          <button class="btn-modal btn-cancel" id="uploadDocCancelBtn">Cancelar</button>
-          <button class="btn-modal btn-confirm" id="uploadDocConfirmBtn">Enviar</button>
+          <button class="btn-modal btn-cancel" id="uploadDocCancelBtn">
+            Cancelar
+          </button>
+          <button class="btn-modal btn-confirm" id="uploadDocConfirmBtn">
+            Enviar
+          </button>
         </div>
       </div>
     </div>
@@ -3896,9 +4407,12 @@
       async function deleteSession(sessionId) {
         try {
           const uid2 = currentUserId || "";
-          const response = await fetch(`${DELETE_URL}?sessionId=${sessionId}&userId=${encodeURIComponent(uid2)}`, {
-            method: "DELETE",
-          });
+          const response = await fetch(
+            `${DELETE_URL}?sessionId=${sessionId}&userId=${encodeURIComponent(uid2)}`,
+            {
+              method: "DELETE",
+            },
+          );
           if (!response.ok) throw new Error("Failed to delete session");
           return true;
         } catch (error) {
@@ -4578,7 +5092,9 @@
         const imgs = Array.from(container.querySelectorAll("img"));
         imgs.forEach((img) => {
           const src = img.getAttribute("src") || "";
-          const isZanaflexProduct = /zanaflex\.nimiam\.com\.br|nimiam/i.test(src);
+          const isZanaflexProduct = /zanaflex\.nimiam\.com\.br|nimiam/i.test(
+            src,
+          );
           const isImage = /\.(jpe?g|png|webp|gif)(\?|$)/i.test(src);
           if (!isZanaflexProduct && !isImage) return;
           if (img.closest(".product-card") || img.closest(".lead-carousel"))
@@ -5217,16 +5733,19 @@
         try {
           // Garante categorias carregadas para descobrir uma pasta Drive válida
           if (!allCategories || allCategories.length === 0) {
-            try { await fetchAllCategories(); } catch (_) {}
+            try {
+              await fetchAllCategories();
+            } catch (_) {}
           }
           const catWithFolder = (allCategories || []).find(
-            (c) => c.drive_folder_id && String(c.drive_folder_id).trim().length > 0
+            (c) =>
+              c.drive_folder_id && String(c.drive_folder_id).trim().length > 0,
           );
           if (!catWithFolder) {
             hideTypingIndicator();
             setStatus(
               "Nenhuma categoria com pasta Drive configurada. Peça ao admin para definir o ID da pasta em Categorias.",
-              "error"
+              "error",
             );
             renderMessage({
               role: "assistant",
@@ -5357,7 +5876,6 @@
         DELETE: ZANAFLEX_PREFIX + "admin_delete_user",
         CONFIRM: ZANAFLEX_PREFIX + "admin_confirm_user",
       };
-
 
       function buildMultiSelect({
         triggerId,
@@ -5501,19 +6019,18 @@
         };
       }
 
-
       // ===== Teams & Categories admin layer (Zanaflex) =====
       // Replaces the estados/cidades geographic coverage model with a
       // teamâ†’category ACL model.
 
-      let allTeams       = []; // [{id,name,description,member_ids:[], category_ids:[]}]
-      let allCategories  = []; // [{id,code,name,description}]
-      let selectedTeams  = []; // user form: team IDs the user belongs to
+      let allTeams = []; // [{id,name,description,member_ids:[], category_ids:[]}]
+      let allCategories = []; // [{id,code,name,description}]
+      let selectedTeams = []; // user form: team IDs the user belongs to
 
       async function fetchAllTeams() {
         try {
           const { data, error } = await supabaseClient.rpc(
-            ZANAFLEX_PREFIX + "admin_list_teams"
+            ZANAFLEX_PREFIX + "admin_list_teams",
           );
           if (error) throw error;
           allTeams = data || [];
@@ -5526,7 +6043,7 @@
       async function fetchAllCategories() {
         try {
           const { data, error } = await supabaseClient.rpc(
-            ZANAFLEX_PREFIX + "list_categories"
+            ZANAFLEX_PREFIX + "list_categories",
           );
           if (error) throw error;
           allCategories = data || [];
@@ -5544,13 +6061,13 @@
         msTeams = buildMultiSelect({
           triggerId: "teamsTrigger2",
           dropdownId: "teamsDropdown2",
-          searchId:   "teamsSearch2",
-          optionsId:  "teamsOptions2",
-          items:      teams,
-          selected:   selectedTeams,
-          allLabel:   "Todas as equipes",
-          allValue:   "__ALL__",
-          onToggle:   () => {},
+          searchId: "teamsSearch2",
+          optionsId: "teamsOptions2",
+          items: teams,
+          selected: selectedTeams,
+          allLabel: "Todas as equipes",
+          allValue: "__ALL__",
+          onToggle: () => {},
           renderLabel: (t) => t.name,
         });
         if (msTeams) {
@@ -5581,7 +6098,6 @@
           if (t) selectedTeams.push(t.name);
         });
       }
-
 
       let editingUserId = null;
       let deletingUserId = null;
@@ -5614,8 +6130,8 @@
         // só restaura o chat se nenhum outro painel admin estiver visível
         if (
           chatArea &&
-          (!ragPage  || ragPage.style.display  === "none") &&
-          (!catPage  || catPage.style.display  === "none") &&
+          (!ragPage || ragPage.style.display === "none") &&
+          (!catPage || catPage.style.display === "none") &&
           (!teamPage || teamPage.style.display === "none")
         ) {
           chatArea.style.display = "";
@@ -5648,7 +6164,7 @@
               role === "admin" ? "var(--color-primary)" : "var(--color-wine)";
             // Resolve team names for this user from allTeams.member_ids.
             const userTeams = allTeams.filter(
-              (t) => (t.member_ids || []).indexOf(u.user_id) !== -1
+              (t) => (t.member_ids || []).indexOf(u.user_id) !== -1,
             );
             let teamsTxt;
             if (role === "admin") {
@@ -5809,9 +6325,10 @@
         const chat = document.getElementById("chatArea");
         if (
           chat &&
-          (document.getElementById("usersPage")?.style.display !== "flex") &&
-          (document.getElementById("categoriesAdminPage")?.style.display !== "flex") &&
-          (document.getElementById("teamsAdminPage")?.style.display !== "flex")
+          document.getElementById("usersPage")?.style.display !== "flex" &&
+          document.getElementById("categoriesAdminPage")?.style.display !==
+            "flex" &&
+          document.getElementById("teamsAdminPage")?.style.display !== "flex"
         ) {
           chat.style.display = "";
         }
@@ -5834,9 +6351,9 @@
         const chat = document.getElementById("chatArea");
         if (
           chat &&
-          (document.getElementById("usersPage")?.style.display !== "flex") &&
-          (document.getElementById("ragDocsPage")?.style.display !== "flex") &&
-          (document.getElementById("teamsAdminPage")?.style.display !== "flex")
+          document.getElementById("usersPage")?.style.display !== "flex" &&
+          document.getElementById("ragDocsPage")?.style.display !== "flex" &&
+          document.getElementById("teamsAdminPage")?.style.display !== "flex"
         ) {
           chat.style.display = "";
         }
@@ -5858,21 +6375,35 @@
           allCategories.forEach((c) => {
             const tr = document.createElement("tr");
             const folderCell = c.drive_folder_id
-              ? '<a href="https://drive.google.com/drive/folders/' + encodeURIComponent(c.drive_folder_id) + '" target="_blank" rel="noopener" style="font-family:monospace;font-size:0.8rem">' + escapeHtml(c.drive_folder_id) + '</a>'
+              ? '<a href="https://drive.google.com/drive/folders/' +
+                encodeURIComponent(c.drive_folder_id) +
+                '" target="_blank" rel="noopener" style="font-family:monospace;font-size:0.8rem">' +
+                escapeHtml(c.drive_folder_id) +
+                "</a>"
               : '<span style="color:#dc2626;font-size:0.8rem">não definida</span>';
             tr.innerHTML =
-              '<td class="users-td"><strong>' + escapeHtml(c.code) + "</strong></td>" +
-              '<td class="users-td">' + escapeHtml(c.name || "") + "</td>" +
-              '<td class="users-td" style="font-size:0.85rem;color:var(--text-secondary)">' +
-                escapeHtml(c.description || "—") +
+              '<td class="users-td"><strong>' +
+              escapeHtml(c.code) +
+              "</strong></td>" +
+              '<td class="users-td">' +
+              escapeHtml(c.name || "") +
               "</td>" +
-              '<td class="users-td">' + folderCell + "</td>" +
+              '<td class="users-td" style="font-size:0.85rem;color:var(--text-secondary)">' +
+              escapeHtml(c.description || "—") +
+              "</td>" +
+              '<td class="users-td">' +
+              folderCell +
+              "</td>" +
               '<td class="users-td" style="text-align:right;white-space:nowrap">' +
               '<button class="reset-badge-btn cat-edit-btn" style="width:auto;font-size:11px;padding:4px 10px;margin-right:4px" title="Editar"><i data-lucide="pencil" style="width:12px;height:12px"></i></button>' +
               '<button class="reset-badge-btn cat-del-btn" style="width:auto;font-size:11px;padding:4px 10px;color:#dc2626;border-color:rgba(220,38,38,0.3)" title="Excluir"><i data-lucide="trash-2" style="width:12px;height:12px"></i></button>' +
               "</td>";
-            tr.querySelector(".cat-edit-btn").addEventListener("click", () => openEditCategory(c));
-            tr.querySelector(".cat-del-btn").addEventListener("click", () => confirmDeleteCategory(c));
+            tr.querySelector(".cat-edit-btn").addEventListener("click", () =>
+              openEditCategory(c),
+            );
+            tr.querySelector(".cat-del-btn").addEventListener("click", () =>
+              confirmDeleteCategory(c),
+            );
             tbody.appendChild(tr);
           });
           if (loading) loading.style.display = "none";
@@ -5885,7 +6416,8 @@
 
       function openCreateCategory() {
         editingCategoryId = null;
-        document.getElementById("categoryFormTitle").textContent = "Nova Categoria";
+        document.getElementById("categoryFormTitle").textContent =
+          "Nova Categoria";
         document.getElementById("categoryForm").reset();
         document.getElementById("categoryFormError").style.display = "none";
         document.getElementById("categoryCodeInput").disabled = false;
@@ -5894,12 +6426,15 @@
       }
       function openEditCategory(c) {
         editingCategoryId = c.id;
-        document.getElementById("categoryFormTitle").textContent = "Editar Categoria";
+        document.getElementById("categoryFormTitle").textContent =
+          "Editar Categoria";
         document.getElementById("categoryCodeInput").value = c.code || "";
         document.getElementById("categoryCodeInput").disabled = true; // code is immutable
         document.getElementById("categoryNameInput").value = c.name || "";
-        document.getElementById("categoryDescInput").value = c.description || "";
-        document.getElementById("categoryDriveFolderInput").value = c.drive_folder_id || "";
+        document.getElementById("categoryDescInput").value =
+          c.description || "";
+        document.getElementById("categoryDriveFolderInput").value =
+          c.drive_folder_id || "";
         document.getElementById("categoryFormError").style.display = "none";
         document.getElementById("categoryFormPanel").style.display = "flex";
         lucide.createIcons();
@@ -5942,20 +6477,21 @@
         const chat = document.getElementById("chatArea");
         if (
           chat &&
-          (document.getElementById("usersPage")?.style.display !== "flex") &&
-          (document.getElementById("ragDocsPage")?.style.display !== "flex") &&
-          (document.getElementById("categoriesAdminPage")?.style.display !== "flex")
+          document.getElementById("usersPage")?.style.display !== "flex" &&
+          document.getElementById("ragDocsPage")?.style.display !== "flex" &&
+          document.getElementById("categoriesAdminPage")?.style.display !==
+            "flex"
         ) {
           chat.style.display = "";
         }
       }
 
       let editingTeamId = null;
-      let allUsers     = [];   // [{user_id, full_name, email, role}]
+      let allUsers = []; // [{user_id, full_name, email, role}]
       let teamFormSelectedMembers = []; // labels
-      let teamFormSelectedCats    = []; // labels
+      let teamFormSelectedCats = []; // labels
       let msTeamMembers = null;
-      let msTeamCats    = null;
+      let msTeamCats = null;
 
       async function fetchAllUsers() {
         try {
@@ -5970,7 +6506,7 @@
 
       async function loadTeamsPage() {
         const loading = document.getElementById("teamsLoading");
-        const table   = document.getElementById("teamsTable");
+        const table = document.getElementById("teamsTable");
         if (loading) loading.style.display = "block";
         if (table) table.style.display = "none";
         try {
@@ -5987,7 +6523,7 @@
             const memberNames = (t.member_ids || [])
               .map((id) => {
                 const u = allUsers.find((x) => x.user_id === id);
-                return u ? (u.full_name || u.email) : null;
+                return u ? u.full_name || u.email : null;
               })
               .filter(Boolean);
             const catNames = (t.category_ids || [])
@@ -5998,28 +6534,34 @@
               .filter(Boolean);
             const tr = document.createElement("tr");
             tr.innerHTML =
-              '<td class="users-td"><strong>' + escapeHtml(t.name) + "</strong></td>" +
+              '<td class="users-td"><strong>' +
+              escapeHtml(t.name) +
+              "</strong></td>" +
               '<td class="users-td" style="font-size:0.85rem;color:var(--text-secondary)">' +
-                escapeHtml(t.description || "—") +
+              escapeHtml(t.description || "—") +
               "</td>" +
               '<td class="users-td" style="font-size:0.85rem">' +
-                (memberNames.length
-                  ? (memberNames.length <= 3
-                      ? memberNames.map(escapeHtml).join(", ")
-                      : memberNames.length + " usuários")
-                  : '<span style="opacity:0.4">—</span>') +
+              (memberNames.length
+                ? memberNames.length <= 3
+                  ? memberNames.map(escapeHtml).join(", ")
+                  : memberNames.length + " usuários"
+                : '<span style="opacity:0.4">—</span>') +
               "</td>" +
               '<td class="users-td" style="font-size:0.85rem">' +
-                (catNames.length
-                  ? catNames.map(escapeHtml).join(", ")
-                  : '<span style="opacity:0.4">—</span>') +
+              (catNames.length
+                ? catNames.map(escapeHtml).join(", ")
+                : '<span style="opacity:0.4">—</span>') +
               "</td>" +
               '<td class="users-td" style="text-align:right;white-space:nowrap">' +
               '<button class="reset-badge-btn team-edit-btn" style="width:auto;font-size:11px;padding:4px 10px;margin-right:4px"><i data-lucide="pencil" style="width:12px;height:12px"></i></button>' +
               '<button class="reset-badge-btn team-del-btn" style="width:auto;font-size:11px;padding:4px 10px;color:#dc2626;border-color:rgba(220,38,38,0.3)"><i data-lucide="trash-2" style="width:12px;height:12px"></i></button>' +
               "</td>";
-            tr.querySelector(".team-edit-btn").addEventListener("click", () => openEditTeam(t));
-            tr.querySelector(".team-del-btn").addEventListener("click", () => confirmDeleteTeam(t));
+            tr.querySelector(".team-edit-btn").addEventListener("click", () =>
+              openEditTeam(t),
+            );
+            tr.querySelector(".team-del-btn").addEventListener("click", () =>
+              confirmDeleteTeam(t),
+            );
             tbody.appendChild(tr);
           });
           if (loading) loading.style.display = "none";
@@ -6032,31 +6574,37 @@
 
       function buildTeamFormMultiSelects() {
         msTeamMembers = buildMultiSelect({
-          triggerId:  "teamMembersTrigger",
+          triggerId: "teamMembersTrigger",
           dropdownId: "teamMembersDropdown",
-          searchId:   "teamMembersSearch",
-          optionsId:  "teamMembersOptions",
-          items:      allUsers,
-          selected:   teamFormSelectedMembers,
-          allLabel:   "Todos os usuários",
-          allValue:   "__ALL_MEMBERS__",
-          onToggle:   () => {},
+          searchId: "teamMembersSearch",
+          optionsId: "teamMembersOptions",
+          items: allUsers,
+          selected: teamFormSelectedMembers,
+          allLabel: "Todos os usuários",
+          allValue: "__ALL_MEMBERS__",
+          onToggle: () => {},
           renderLabel: (u) => (u.full_name || u.email) + " (" + u.email + ")",
         });
         msTeamCats = buildMultiSelect({
-          triggerId:  "teamCatsTrigger",
+          triggerId: "teamCatsTrigger",
           dropdownId: "teamCatsDropdown",
-          searchId:   "teamCatsSearch",
-          optionsId:  "teamCatsOptions",
-          items:      allCategories,
-          selected:   teamFormSelectedCats,
-          allLabel:   "Todas as categorias",
-          allValue:   "__ALL_CATS__",
-          onToggle:   () => {},
+          searchId: "teamCatsSearch",
+          optionsId: "teamCatsOptions",
+          items: allCategories,
+          selected: teamFormSelectedCats,
+          allLabel: "Todas as categorias",
+          allValue: "__ALL_CATS__",
+          onToggle: () => {},
           renderLabel: (c) => c.code + " — " + c.name,
         });
-        if (msTeamMembers) { msTeamMembers.render(""); msTeamMembers.updateTrigger(); }
-        if (msTeamCats)    { msTeamCats.render("");    msTeamCats.updateTrigger();    }
+        if (msTeamMembers) {
+          msTeamMembers.render("");
+          msTeamMembers.updateTrigger();
+        }
+        if (msTeamCats) {
+          msTeamCats.render("");
+          msTeamCats.updateTrigger();
+        }
       }
 
       function resolveTeamFormMemberIds() {
@@ -6107,7 +6655,10 @@
         teamFormSelectedCats.length = 0;
         (t.member_ids || []).forEach((id) => {
           const u = allUsers.find((x) => x.user_id === id);
-          if (u) teamFormSelectedMembers.push((u.full_name || u.email) + " (" + u.email + ")");
+          if (u)
+            teamFormSelectedMembers.push(
+              (u.full_name || u.email) + " (" + u.email + ")",
+            );
         });
         (t.category_ids || []).forEach((id) => {
           const c = allCategories.find((x) => x.id === id);
@@ -6122,7 +6673,9 @@
       }
 
       async function confirmDeleteTeam(t) {
-        const ok = window.confirm(`Excluir a equipe "${t.name}"?\n\nMembros perderão o acesso concedido por essa equipe.`);
+        const ok = window.confirm(
+          `Excluir a equipe "${t.name}"?\n\nMembros perderão o acesso concedido por essa equipe.`,
+        );
         if (!ok) return;
         try {
           const { error } = await supabaseClient.rpc(
@@ -6141,25 +6694,45 @@
       if (categoryFormEl) {
         categoryFormEl.addEventListener("submit", async (e) => {
           e.preventDefault();
-          const errEl  = document.getElementById("categoryFormError");
+          const errEl = document.getElementById("categoryFormError");
           const saveBtn = document.getElementById("categoryFormSaveBtn");
           errEl.style.display = "none";
           saveBtn.disabled = true;
           try {
-            const code = document.getElementById("categoryCodeInput").value.trim().toUpperCase();
-            const name = document.getElementById("categoryNameInput").value.trim();
-            const desc = document.getElementById("categoryDescInput").value.trim();
-            const driveFolder = document.getElementById("categoryDriveFolderInput").value.trim();
+            const code = document
+              .getElementById("categoryCodeInput")
+              .value.trim()
+              .toUpperCase();
+            const name = document
+              .getElementById("categoryNameInput")
+              .value.trim();
+            const desc = document
+              .getElementById("categoryDescInput")
+              .value.trim();
+            const driveFolder = document
+              .getElementById("categoryDriveFolderInput")
+              .value.trim();
             if (editingCategoryId) {
               const { error } = await supabaseClient.rpc(
                 ZANAFLEX_PREFIX + "admin_update_category",
-                { p_id: editingCategoryId, p_code: code, p_name: name, p_description: desc || null, p_drive_folder_id: driveFolder || null },
+                {
+                  p_id: editingCategoryId,
+                  p_code: code,
+                  p_name: name,
+                  p_description: desc || null,
+                  p_drive_folder_id: driveFolder || null,
+                },
               );
               if (error) throw error;
             } else {
               const { error } = await supabaseClient.rpc(
                 ZANAFLEX_PREFIX + "admin_create_category",
-                { p_code: code, p_name: name, p_description: desc || null, p_drive_folder_id: driveFolder || null },
+                {
+                  p_code: code,
+                  p_name: name,
+                  p_description: desc || null,
+                  p_drive_folder_id: driveFolder || null,
+                },
               );
               if (error) throw error;
             }
@@ -6178,7 +6751,7 @@
       if (teamFormEl) {
         teamFormEl.addEventListener("submit", async (e) => {
           e.preventDefault();
-          const errEl  = document.getElementById("teamFormError");
+          const errEl = document.getElementById("teamFormError");
           const saveBtn = document.getElementById("teamFormSaveBtn");
           errEl.style.display = "none";
           saveBtn.disabled = true;
@@ -6186,7 +6759,7 @@
             const name = document.getElementById("teamNameInput").value.trim();
             const desc = document.getElementById("teamDescInput").value.trim();
             const memberIds = resolveTeamFormMemberIds();
-            const catIds    = resolveTeamFormCategoryIds();
+            const catIds = resolveTeamFormCategoryIds();
             let teamId = editingTeamId;
             if (teamId) {
               const { error } = await supabaseClient.rpc(
@@ -6232,12 +6805,13 @@
         const el = document.getElementById(id);
         if (el) el.addEventListener("click", closeTeamForm);
       });
-      const _addCatBtn  = document.getElementById("addCategoryBtn");
-      if (_addCatBtn)  _addCatBtn.addEventListener("click", openCreateCategory);
+      const _addCatBtn = document.getElementById("addCategoryBtn");
+      if (_addCatBtn) _addCatBtn.addEventListener("click", openCreateCategory);
       const _addTeamBtn = document.getElementById("addTeamBtn");
       if (_addTeamBtn) _addTeamBtn.addEventListener("click", openCreateTeam);
       const _catsRefresh = document.getElementById("categoriesRefreshBtn");
-      if (_catsRefresh) _catsRefresh.addEventListener("click", loadCategoriesPage);
+      if (_catsRefresh)
+        _catsRefresh.addEventListener("click", loadCategoriesPage);
       const _teamsRefresh = document.getElementById("teamsRefreshBtn");
       if (_teamsRefresh) _teamsRefresh.addEventListener("click", loadTeamsPage);
       const _catsBack = document.getElementById("categoriesBackBtn");
@@ -6245,9 +6819,11 @@
       const _teamsBack = document.getElementById("teamsBackBtn");
       if (_teamsBack) _teamsBack.addEventListener("click", hideTeamsPage);
       const _manageCatsBtn = document.getElementById("manageCategoriesBtn");
-      if (_manageCatsBtn) _manageCatsBtn.addEventListener("click", showCategoriesPage);
+      if (_manageCatsBtn)
+        _manageCatsBtn.addEventListener("click", showCategoriesPage);
       const _manageTeamsBtn = document.getElementById("manageTeamsBtn");
-      if (_manageTeamsBtn) _manageTeamsBtn.addEventListener("click", showTeamsPage);
+      if (_manageTeamsBtn)
+        _manageTeamsBtn.addEventListener("click", showTeamsPage);
 
       function formatRagDate(value) {
         if (!value) return '<span style="opacity:0.4">—</span>';
@@ -6369,9 +6945,7 @@
               doc.category_name ||
               "__uncat__";
             const label =
-              doc.category_name ||
-              doc.category_code ||
-              "Sem categoria";
+              doc.category_name || doc.category_code || "Sem categoria";
             if (!groups.has(key)) {
               groups.set(key, { key, label, docs: [] });
             }
@@ -6466,7 +7040,9 @@
               if (isCollapsed) ragCollapsedCats.delete(key);
               else ragCollapsedCats.add(key);
               tbody
-                .querySelectorAll(`tr.rag-cat-row[data-cat-key="${CSS.escape(key)}"]`)
+                .querySelectorAll(
+                  `tr.rag-cat-row[data-cat-key="${CSS.escape(key)}"]`,
+                )
                 .forEach((r) => {
                   r.style.display = isCollapsed ? "" : "none";
                 });
@@ -6508,13 +7084,11 @@
           if (selectAll) {
             selectAll.checked = false;
             selectAll.onchange = () => {
-              tbody
-                .querySelectorAll("input.rag-doc-check")
-                .forEach((cb) => {
-                  if (cb.closest("tr").style.display !== "none") {
-                    cb.checked = selectAll.checked;
-                  }
-                });
+              tbody.querySelectorAll("input.rag-doc-check").forEach((cb) => {
+                if (cb.closest("tr").style.display !== "none") {
+                  cb.checked = selectAll.checked;
+                }
+              });
               updateRagBulkBar();
             };
           }
@@ -6580,7 +7154,9 @@
         );
         if (!ok) return;
         try {
-          showRagBusy(`Reprocessando ${label}... isso pode demorar alguns minutos.`);
+          showRagBusy(
+            `Reprocessando ${label}... isso pode demorar alguns minutos.`,
+          );
           setStatus(`Reprocessando ${label}...`, "warning");
           const resp = await fetch(RAG_REINDEX_URL, {
             method: "POST",
@@ -6599,10 +7175,7 @@
           // Aguarda um pouco e recarrega para refletir last_indexed_at atualizado.
           setTimeout(() => loadRagDocs(), 4000);
         } catch (err) {
-          setStatus(
-            `Erro ao reprocessar: ${err.message || err}`,
-            "error",
-          );
+          setStatus(`Erro ao reprocessar: ${err.message || err}`, "error");
         } finally {
           hideRagBusy();
         }
@@ -6616,7 +7189,9 @@
             const result = reader.result || "";
             // strip data URL prefix if present
             const comma = String(result).indexOf(",");
-            resolve(comma >= 0 ? String(result).slice(comma + 1) : String(result));
+            resolve(
+              comma >= 0 ? String(result).slice(comma + 1) : String(result),
+            );
           };
           reader.onerror = reject;
           reader.readAsDataURL(file);
@@ -6639,7 +7214,9 @@
       function openUploadDocModal(file) {
         return new Promise(async (resolve) => {
           // Garante categorias carregadas
-          try { if (allCategories.length === 0) await fetchAllCategories(); } catch (_) {}
+          try {
+            if (allCategories.length === 0) await fetchAllCategories();
+          } catch (_) {}
 
           const modal = document.getElementById("uploadDocModal");
           const select = document.getElementById("uploadDocCategorySelect");
@@ -6651,13 +7228,15 @@
 
           // Populate options (categoria precisa ter drive_folder_id)
           const usable = (allCategories || []).filter(
-            (c) => c.drive_folder_id && String(c.drive_folder_id).trim().length > 0
+            (c) =>
+              c.drive_folder_id && String(c.drive_folder_id).trim().length > 0,
           );
           select.innerHTML = "";
           if (usable.length === 0) {
             const opt = document.createElement("option");
             opt.value = "";
-            opt.textContent = "— Nenhuma categoria com pasta Drive configurada —";
+            opt.textContent =
+              "— Nenhuma categoria com pasta Drive configurada —";
             select.appendChild(opt);
             select.disabled = true;
             confirmBtn.disabled = true;
@@ -6678,7 +7257,8 @@
             hint.textContent = `${usable.length} categoria(s) disponível(is). O documento irá para a pasta vinculada.`;
           }
 
-          label.innerHTML = "Arquivo: <strong>" + escapeHtml(file.name) + "</strong>";
+          label.innerHTML =
+            "Arquivo: <strong>" + escapeHtml(file.name) + "</strong>";
           errEl.style.display = "none";
           errEl.textContent = "";
           modal.style.display = "flex";
@@ -6690,7 +7270,10 @@
             modal.removeEventListener("click", onBackdrop);
             document.removeEventListener("keydown", onKey);
           };
-          const onCancel = () => { cleanup(); resolve(null); };
+          const onCancel = () => {
+            cleanup();
+            resolve(null);
+          };
           const onConfirm = () => {
             const code = (select.value || "").trim();
             if (!code) {
@@ -6701,7 +7284,9 @@
             cleanup();
             resolve(code);
           };
-          const onBackdrop = (e) => { if (e.target === modal) onCancel(); };
+          const onBackdrop = (e) => {
+            if (e.target === modal) onCancel();
+          };
           const onKey = (e) => {
             if (e.key === "Escape") onCancel();
             else if (e.key === "Enter") onConfirm();
@@ -6710,7 +7295,11 @@
           confirmBtn.addEventListener("click", onConfirm);
           modal.addEventListener("click", onBackdrop);
           document.addEventListener("keydown", onKey);
-          setTimeout(() => { try { select.focus(); } catch (_) {} }, 50);
+          setTimeout(() => {
+            try {
+              select.focus();
+            } catch (_) {}
+          }, 50);
         });
       }
 
@@ -6735,12 +7324,20 @@
             throw new Error("Upload failed: " + (txt || resp.status));
           }
           let result = null;
-          try { result = await resp.json(); } catch (_) {}
-          const action = result && result.action === "replace" ? "substituído" : "adicionado";
+          try {
+            result = await resp.json();
+          } catch (_) {}
+          const action =
+            result && result.action === "replace"
+              ? "substituído"
+              : "adicionado";
           setStatus(`${file.name} ${action} no RAG!`, "success");
           await loadRagDocs();
         } catch (err) {
-          setStatus(`Erro ao indexar ${file.name}: ${err.message || err}`, "error");
+          setStatus(
+            `Erro ao indexar ${file.name}: ${err.message || err}`,
+            "error",
+          );
         } finally {
           hideRagBusy();
         }
@@ -6815,9 +7412,7 @@
       if (ragReindexAllBtn) {
         ragReindexAllBtn.addEventListener("click", () => {
           const ids = Array.from(
-            document.querySelectorAll(
-              "#ragDocsTableBody input.rag-doc-check",
-            ),
+            document.querySelectorAll("#ragDocsTableBody input.rag-doc-check"),
           ).map((cb) => cb.dataset.ragDocId);
           if (ids.length === 0) return;
           reindexRagDocs(ids);
