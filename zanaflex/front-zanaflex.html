@@ -4088,7 +4088,10 @@
         class="confirm-modal"
         style="max-width: 720px; width: 95%; text-align: left"
       >
-        <h3 class="confirm-title" style="display: flex; align-items: center; gap: 8px">
+        <h3
+          class="confirm-title"
+          style="display: flex; align-items: center; gap: 8px"
+        >
           <i data-lucide="plug-zap" style="width: 20px; height: 20px"></i>
           Integração via API — Envio de Documentos ao RAG
         </h3>
@@ -4121,35 +4124,99 @@
                 padding: 10px 12px;
                 overflow-x: auto;
                 font-size: 0.8rem;
-              "><code id="ragApiInfoEndpoint">POST {URL}</code></pre>
+              "
+            ><code id="ragApiInfoEndpoint">POST {URL}</code></pre>
           </div>
 
           <div>
             <div style="font-weight: 700; margin-bottom: 6px">
               Parâmetros (multipart/form-data)
             </div>
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem">
+            <table
+              style="width: 100%; border-collapse: collapse; font-size: 0.8rem"
+            >
               <thead>
                 <tr style="text-align: left; color: var(--text-secondary)">
-                  <th style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">Campo</th>
-                  <th style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">Tipo</th>
-                  <th style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">Descrição</th>
+                  <th
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    Campo
+                  </th>
+                  <th
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    Tipo
+                  </th>
+                  <th
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    Descrição
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)"><code>data</code></td>
-                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">arquivo (binário)</td>
-                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">
-                    O arquivo a indexar (PDF, DOCX, XLSX, CSV, TXT...). <strong>Um arquivo por requisição.</strong>
+                  <td
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    <code>data</code>
+                  </td>
+                  <td
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    arquivo (binário)
+                  </td>
+                  <td
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    O arquivo a indexar (PDF, DOCX, XLSX, CSV, TXT...).
+                    <strong>Um arquivo por requisição.</strong>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)"><code>categoria</code></td>
-                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">texto</td>
-                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">
-                    Código da categoria (ex.: <code>IT</code>). A categoria precisa existir e ter
-                    pasta do Google Drive configurada em <strong>Administração → Categorias</strong>.
+                  <td
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    <code>categoria</code>
+                  </td>
+                  <td
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    texto
+                  </td>
+                  <td
+                    style="
+                      padding: 6px 8px;
+                      border-bottom: 1px solid var(--border-color);
+                    "
+                  >
+                    Código da categoria (ex.: <code>IT</code>). A categoria
+                    precisa existir e ter pasta do Google Drive configurada em
+                    <strong>Administração → Categorias</strong>.
                   </td>
                 </tr>
               </tbody>
@@ -4157,7 +4224,9 @@
           </div>
 
           <div>
-            <div style="font-weight: 700; margin-bottom: 6px">Exemplo — cURL</div>
+            <div style="font-weight: 700; margin-bottom: 6px">
+              Exemplo — cURL
+            </div>
             <pre
               style="
                 background: rgba(0, 0, 0, 0.25);
@@ -4166,7 +4235,8 @@
                 padding: 10px 12px;
                 overflow-x: auto;
                 font-size: 0.78rem;
-              "><code id="ragApiInfoCurl"></code></pre>
+              "
+            ><code id="ragApiInfoCurl"></code></pre>
           </div>
 
           <div>
@@ -4181,7 +4251,8 @@
                 padding: 10px 12px;
                 overflow-x: auto;
                 font-size: 0.78rem;
-              "><code id="ragApiInfoJs"></code></pre>
+              "
+            ><code id="ragApiInfoJs"></code></pre>
           </div>
 
           <div
@@ -4195,11 +4266,18 @@
             "
           >
             <strong>Importante — envie um arquivo de cada vez:</strong>
-            <ul style="margin: 6px 0 0 18px; display: flex; flex-direction: column; gap: 4px">
+            <ul
+              style="
+                margin: 6px 0 0 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+              "
+            >
               <li>
                 A indexação é pesada (upload ao Drive + extração + embeddings).
-                Aguarde a resposta de uma requisição antes de enviar a próxima
-                — <strong>não envie em paralelo</strong>.
+                Aguarde a resposta de uma requisição antes de enviar a próxima —
+                <strong>não envie em paralelo</strong>.
               </li>
               <li>
                 A resposta pode demorar alguns minutos para arquivos grandes;
@@ -4212,8 +4290,9 @@
               </li>
               <li>
                 Resposta de sucesso: HTTP 200 com JSON contendo
-                <code>action</code> (<code>insert</code> ou <code>replace</code>).
-                Qualquer status diferente de 200 indica falha.
+                <code>action</code> (<code>insert</code> ou
+                <code>replace</code>). Qualquer status diferente de 200 indica
+                falha.
               </li>
             </ul>
           </div>
@@ -4241,7 +4320,7 @@
       mdRenderer.link = function (href, title, text) {
         return mdRendererLink(href, title, text).replace(
           /^<a /,
-          '<a target="_blank" rel="noopener noreferrer" '
+          '<a target="_blank" rel="noopener noreferrer" ',
         );
       };
       marked.setOptions({ renderer: mdRenderer });
@@ -7396,8 +7475,7 @@
           const cats = new Map();
           ragAllDocs.forEach((d) => {
             const key = ragDocCatKey(d);
-            const label =
-              d.category_name || d.category_code || "Sem categoria";
+            const label = d.category_name || d.category_code || "Sem categoria";
             if (!cats.has(key)) cats.set(key, label);
           });
           const opts = ['<option value="__all__">Todas as categorias</option>'];
@@ -7446,7 +7524,9 @@
       function updateRagClearFiltersBtn() {
         const btn = document.getElementById("ragDocsClearFiltersBtn");
         if (btn)
-          btn.style.display = ragDocsHasActiveFilters() ? "inline-flex" : "none";
+          btn.style.display = ragDocsHasActiveFilters()
+            ? "inline-flex"
+            : "none";
       }
 
       function renderRagDocs() {
@@ -7462,50 +7542,50 @@
           countEl.textContent = hasFilters
             ? "(" + docs.length + " de " + ragAllDocs.length + ")"
             : "(" + ragAllDocs.length + ")";
+        }
+        tbody.innerHTML = "";
+        if (empty) empty.style.display = "none";
+        if (table) table.style.display = "none";
+        if (docs.length === 0) {
+          if (empty) {
+            empty.innerHTML = hasFilters
+              ? '<div style="font-size:2rem;margin-bottom:8px">🔍</div>Nenhum documento corresponde à busca/filtros.'
+              : '<div style="font-size:2rem;margin-bottom:8px">📁</div>Nenhum documento na base de conhecimento.<br />Clique em <strong>Adicionar Documento</strong> para começar.';
+            empty.style.display = "block";
           }
-          tbody.innerHTML = "";
-          if (empty) empty.style.display = "none";
-          if (table) table.style.display = "none";
-          if (docs.length === 0) {
-            if (empty) {
-              empty.innerHTML = hasFilters
-                ? '<div style="font-size:2rem;margin-bottom:8px">🔍</div>Nenhum documento corresponde à busca/filtros.'
-                : '<div style="font-size:2rem;margin-bottom:8px">📁</div>Nenhum documento na base de conhecimento.<br />Clique em <strong>Adicionar Documento</strong> para começar.';
-              empty.style.display = "block";
-            }
-            updateRagBulkBar();
-            return;
+          updateRagBulkBar();
+          return;
+        }
+        // Agrupa por categoria
+        const groups = new Map();
+        docs.forEach((doc) => {
+          const key =
+            doc.category_id ||
+            doc.category_code ||
+            doc.category_name ||
+            "__uncat__";
+          const label =
+            doc.category_name || doc.category_code || "Sem categoria";
+          if (!groups.has(key)) {
+            groups.set(key, { key, label, docs: [] });
           }
-          // Agrupa por categoria
-          const groups = new Map();
-          docs.forEach((doc) => {
-            const key =
-              doc.category_id ||
-              doc.category_code ||
-              doc.category_name ||
-              "__uncat__";
-            const label =
-              doc.category_name || doc.category_code || "Sem categoria";
-            if (!groups.has(key)) {
-              groups.set(key, { key, label, docs: [] });
-            }
-            groups.get(key).docs.push(doc);
-          });
-          // Ordena grupos por rótulo, "Sem categoria" por último
-          const groupList = Array.from(groups.values()).sort((a, b) => {
-            if (a.key === "__uncat__") return 1;
-            if (b.key === "__uncat__") return -1;
-            return a.label.localeCompare(b.label, "pt-BR");
-          });
-          groupList.forEach((g) => {
-            const safeKey = String(g.key).replace(/[^a-zA-Z0-9_-]/g, "_");
-            const collapsed = ragCollapsedCats.has(g.key);
-            const headerTr = document.createElement("tr");
-            headerTr.className = "rag-cat-header";
-            headerTr.dataset.catKey = g.key;
-            headerTr.style.cursor = "pointer";
-            headerTr.style.background = "var(--bg-secondary, rgba(0,0,0,0.04))";
-            headerTr.innerHTML = `
+          groups.get(key).docs.push(doc);
+        });
+        // Ordena grupos por rótulo, "Sem categoria" por último
+        const groupList = Array.from(groups.values()).sort((a, b) => {
+          if (a.key === "__uncat__") return 1;
+          if (b.key === "__uncat__") return -1;
+          return a.label.localeCompare(b.label, "pt-BR");
+        });
+        groupList.forEach((g) => {
+          const safeKey = String(g.key).replace(/[^a-zA-Z0-9_-]/g, "_");
+          const collapsed = ragCollapsedCats.has(g.key);
+          const headerTr = document.createElement("tr");
+          headerTr.className = "rag-cat-header";
+          headerTr.dataset.catKey = g.key;
+          headerTr.style.cursor = "pointer";
+          headerTr.style.background = "var(--bg-secondary, rgba(0,0,0,0.04))";
+          headerTr.innerHTML = `
               <td class="users-th" colspan="6" style="font-weight:600;user-select:none">
                 <span style="display:inline-flex;align-items:center;gap:8px">
                   <i data-lucide="${collapsed ? "chevron-right" : "chevron-down"}" style="width:16px;height:16px"></i>
@@ -7515,19 +7595,19 @@
                 </span>
               </td>
             `;
-            tbody.appendChild(headerTr);
-            g.docs.forEach((doc) => {
-              const tr = document.createElement("tr");
-              tr.className = "rag-cat-row rag-cat-row-" + safeKey;
-              tr.dataset.catKey = g.key;
-              if (collapsed) tr.style.display = "none";
-              const title = doc.title || doc.id || "Sem título";
-              const lastIdx = doc.last_indexed_at || doc.created_at;
-              const catTxt =
-                doc.category_name ||
-                doc.category_code ||
-                '<span style="opacity:0.4">—</span>';
-              tr.innerHTML = `
+          tbody.appendChild(headerTr);
+          g.docs.forEach((doc) => {
+            const tr = document.createElement("tr");
+            tr.className = "rag-cat-row rag-cat-row-" + safeKey;
+            tr.dataset.catKey = g.key;
+            if (collapsed) tr.style.display = "none";
+            const title = doc.title || doc.id || "Sem título";
+            const lastIdx = doc.last_indexed_at || doc.created_at;
+            const catTxt =
+              doc.category_name ||
+              doc.category_code ||
+              '<span style="opacity:0.4">—</span>';
+            tr.innerHTML = `
                 <td class="users-th" style="text-align:center;padding-left:32px">
                   <input
                     type="checkbox"
@@ -7568,71 +7648,68 @@
                   </button>
                 </td>
               `;
-              tbody.appendChild(tr);
-            });
+            tbody.appendChild(tr);
           });
-          if (table) table.style.display = "table";
-          lucide.createIcons();
-          tbody.querySelectorAll("tr.rag-cat-header").forEach((row) => {
-            row.addEventListener("click", () => {
-              const key = row.dataset.catKey;
-              const isCollapsed = ragCollapsedCats.has(key);
-              if (isCollapsed) ragCollapsedCats.delete(key);
-              else ragCollapsedCats.add(key);
-              tbody
-                .querySelectorAll(
-                  `tr.rag-cat-row[data-cat-key="${CSS.escape(key)}"]`,
-                )
-                .forEach((r) => {
-                  r.style.display = isCollapsed ? "" : "none";
-                });
-              const icon = row.querySelector("i[data-lucide], svg");
-              if (icon) {
-                const newName = isCollapsed ? "chevron-down" : "chevron-right";
-                const replacement = document.createElement("i");
-                replacement.setAttribute("data-lucide", newName);
-                replacement.style.width = "16px";
-                replacement.style.height = "16px";
-                icon.replaceWith(replacement);
-                lucide.createIcons();
+        });
+        if (table) table.style.display = "table";
+        lucide.createIcons();
+        tbody.querySelectorAll("tr.rag-cat-header").forEach((row) => {
+          row.addEventListener("click", () => {
+            const key = row.dataset.catKey;
+            const isCollapsed = ragCollapsedCats.has(key);
+            if (isCollapsed) ragCollapsedCats.delete(key);
+            else ragCollapsedCats.add(key);
+            tbody
+              .querySelectorAll(
+                `tr.rag-cat-row[data-cat-key="${CSS.escape(key)}"]`,
+              )
+              .forEach((r) => {
+                r.style.display = isCollapsed ? "" : "none";
+              });
+            const icon = row.querySelector("i[data-lucide], svg");
+            if (icon) {
+              const newName = isCollapsed ? "chevron-down" : "chevron-right";
+              const replacement = document.createElement("i");
+              replacement.setAttribute("data-lucide", newName);
+              replacement.style.width = "16px";
+              replacement.style.height = "16px";
+              icon.replaceWith(replacement);
+              lucide.createIcons();
+            }
+          });
+        });
+        tbody.querySelectorAll("button.rag-delete-btn").forEach((btn) => {
+          btn.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            confirmDeleteRagDoc(btn.dataset.ragDocId, btn.dataset.ragDocTitle);
+          });
+        });
+        tbody.querySelectorAll("button.rag-reindex-btn").forEach((btn) => {
+          btn.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            reindexRagDocs(
+              [btn.dataset.ragReindexId],
+              btn.dataset.ragReindexTitle,
+            );
+          });
+        });
+        tbody.querySelectorAll("input.rag-doc-check").forEach((cb) => {
+          cb.addEventListener("click", (ev) => ev.stopPropagation());
+          cb.addEventListener("change", updateRagBulkBar);
+        });
+        const selectAll = document.getElementById("ragDocsSelectAll");
+        if (selectAll) {
+          selectAll.checked = false;
+          selectAll.onchange = () => {
+            tbody.querySelectorAll("input.rag-doc-check").forEach((cb) => {
+              if (cb.closest("tr").style.display !== "none") {
+                cb.checked = selectAll.checked;
               }
             });
-          });
-          tbody.querySelectorAll("button.rag-delete-btn").forEach((btn) => {
-            btn.addEventListener("click", (ev) => {
-              ev.stopPropagation();
-              confirmDeleteRagDoc(
-                btn.dataset.ragDocId,
-                btn.dataset.ragDocTitle,
-              );
-            });
-          });
-          tbody.querySelectorAll("button.rag-reindex-btn").forEach((btn) => {
-            btn.addEventListener("click", (ev) => {
-              ev.stopPropagation();
-              reindexRagDocs(
-                [btn.dataset.ragReindexId],
-                btn.dataset.ragReindexTitle,
-              );
-            });
-          });
-          tbody.querySelectorAll("input.rag-doc-check").forEach((cb) => {
-            cb.addEventListener("click", (ev) => ev.stopPropagation());
-            cb.addEventListener("change", updateRagBulkBar);
-          });
-          const selectAll = document.getElementById("ragDocsSelectAll");
-          if (selectAll) {
-            selectAll.checked = false;
-            selectAll.onchange = () => {
-              tbody.querySelectorAll("input.rag-doc-check").forEach((cb) => {
-                if (cb.closest("tr").style.display !== "none") {
-                  cb.checked = selectAll.checked;
-                }
-              });
-              updateRagBulkBar();
-            };
-          }
-          updateRagBulkBar();
+            updateRagBulkBar();
+          };
+        }
+        updateRagBulkBar();
       }
 
       async function confirmDeleteRagDoc(fileId, title) {
