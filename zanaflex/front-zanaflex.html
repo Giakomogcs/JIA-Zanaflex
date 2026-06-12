@@ -2228,9 +2228,12 @@
         margin-bottom: 24px;
       }
       .login-logo img {
-        height: 80px;
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        height: auto;
         object-fit: contain;
-        margin-bottom: 8px;
+        margin: 0 auto 8px;
       }
       .login-logo-subtitle {
         font-size: 0.75rem;
@@ -2901,6 +2904,21 @@
             <div style="display: flex; gap: 8px">
               <button
                 class="btn-modal btn-cancel"
+                id="ragApiInfoBtn"
+                title="Como enviar documentos via API (integração externa)"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 13px;
+                  padding: 8px 12px;
+                "
+              >
+                <i data-lucide="info" style="width: 14px; height: 14px"></i>
+                API
+              </button>
+              <button
+                class="btn-modal btn-cancel"
                 id="ragDocsRefreshBtn"
                 title="Recarregar lista"
                 style="
@@ -2968,7 +2986,12 @@
                 <i data-lucide="upload" style="width: 14px; height: 14px"></i>
                 Adicionar Documento
               </button>
-              <input type="file" id="ragDocFileInput" style="display: none" />
+              <input
+                type="file"
+                id="ragDocFileInput"
+                multiple
+                style="display: none"
+              />
             </div>
           </div>
 
@@ -3030,6 +3053,101 @@
           </style>
 
           <div class="users-page-body">
+            <!-- Busca e filtros -->
+            <div
+              id="ragDocsFilterBar"
+              style="
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                align-items: center;
+                margin-bottom: 16px;
+              "
+            >
+              <div style="position: relative; flex: 1; min-width: 220px">
+                <i
+                  data-lucide="search"
+                  style="
+                    width: 16px;
+                    height: 16px;
+                    position: absolute;
+                    left: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--text-secondary);
+                    pointer-events: none;
+                  "
+                ></i>
+                <input
+                  type="text"
+                  id="ragDocsSearchInput"
+                  placeholder="Buscar documento por título..."
+                  style="
+                    width: 100%;
+                    padding: 9px 12px 9px 36px;
+                    border: 1px solid var(--border-color);
+                    border-radius: 8px;
+                    background: var(--bg-chat);
+                    color: var(--text-primary);
+                    font-size: 13px;
+                    font-family: inherit;
+                    outline: none;
+                  "
+                />
+              </div>
+              <select
+                id="ragDocsCategoryFilter"
+                title="Filtrar por categoria"
+                style="
+                  padding: 9px 12px;
+                  border: 1px solid var(--border-color);
+                  border-radius: 8px;
+                  background: var(--bg-chat);
+                  color: var(--text-primary);
+                  font-size: 13px;
+                  font-family: inherit;
+                  outline: none;
+                  max-width: 240px;
+                  cursor: pointer;
+                "
+              >
+                <option value="__all__">Todas as categorias</option>
+              </select>
+              <select
+                id="ragDocsTeamFilter"
+                title="Filtrar por equipe (categorias acessíveis pela equipe)"
+                style="
+                  padding: 9px 12px;
+                  border: 1px solid var(--border-color);
+                  border-radius: 8px;
+                  background: var(--bg-chat);
+                  color: var(--text-primary);
+                  font-size: 13px;
+                  font-family: inherit;
+                  outline: none;
+                  max-width: 240px;
+                  cursor: pointer;
+                "
+              >
+                <option value="__all__">Todas as equipes</option>
+              </select>
+              <button
+                type="button"
+                id="ragDocsClearFiltersBtn"
+                class="btn-modal btn-cancel"
+                title="Limpar busca e filtros"
+                style="
+                  display: none;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 13px;
+                  padding: 8px 12px;
+                "
+              >
+                <i data-lucide="x" style="width: 14px; height: 14px"></i>
+                Limpar
+              </button>
+            </div>
             <div
               id="ragDocsLoading"
               style="
@@ -3838,76 +3956,111 @@
       </div>
     </div>
 
-    <!-- Upload Document Modal (category picker) -->
+    <!-- Upload Documents Modal (multi-file queue) -->
     <div
       class="confirm-modal-backdrop"
       id="uploadDocModal"
       style="display: none"
     >
-      <div class="confirm-modal" style="max-width: 460px">
-        <h3 class="confirm-title">Adicionar Documento ao RAG</h3>
-        <p
-          class="confirm-text"
-          id="uploadDocFileLabel"
-          style="word-break: break-all"
-        ></p>
+      <div class="confirm-modal" style="max-width: 680px; width: 95%">
+        <h3 class="confirm-title">Adicionar Documentos ao RAG</h3>
         <div
           style="
             display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-bottom: 16px;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
           "
         >
-          <div>
-            <label
-              for="uploadDocCategorySelect"
-              style="
-                font-size: 0.85rem;
-                font-weight: 600;
-                display: block;
-                margin-bottom: 6px;
-                color: var(--text-secondary);
-              "
-              >Categoria</label
-            >
-            <select
-              id="uploadDocCategorySelect"
-              style="
-                width: 100%;
-                padding: 10px 12px;
-                border-radius: 8px;
-                background: var(--bg-input, #1f1f1f);
-                color: var(--text-primary);
-                border: 1px solid var(--border-color);
-                font-size: 0.95rem;
-              "
-            ></select>
-            <div
-              id="uploadDocCategoryHint"
-              style="
-                font-size: 0.78rem;
-                color: var(--text-secondary);
-                margin-top: 6px;
-                line-height: 1.4;
-              "
-            ></div>
-          </div>
-          <div
+          <label
+            for="uploadDocCategoryAll"
             style="
-              background: rgba(255, 255, 255, 0.04);
-              border: 1px solid var(--border-color);
-              border-radius: 8px;
-              padding: 10px 12px;
-              font-size: 0.8rem;
+              font-size: 0.85rem;
+              font-weight: 600;
               color: var(--text-secondary);
-              line-height: 1.45;
+              white-space: nowrap;
+            "
+            >Categoria para todos:</label
+          >
+          <select
+            id="uploadDocCategoryAll"
+            style="
+              flex: 1;
+              min-width: 180px;
+              padding: 8px 10px;
+              border-radius: 8px;
+              background: var(--bg-input, #1f1f1f);
+              color: var(--text-primary);
+              border: 1px solid var(--border-color);
+              font-size: 0.9rem;
+            "
+          ></select>
+          <button
+            type="button"
+            class="btn-modal btn-cancel"
+            id="uploadDocApplyAllBtn"
+            title="Aplica a categoria selecionada a todos os arquivos da fila"
+            style="font-size: 12px; padding: 8px 12px"
+          >
+            Aplicar a todos
+          </button>
+        </div>
+        <div
+          id="uploadQueueList"
+          style="
+            max-height: 300px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+          "
+        ></div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+          "
+        >
+          <button
+            type="button"
+            class="btn-modal btn-cancel"
+            id="uploadDocAddMoreBtn"
+            style="
+              font-size: 12px;
+              padding: 8px 12px;
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
             "
           >
-            Se já existir um arquivo com o mesmo nome na pasta da categoria, ele
-            será <strong>substituído</strong> e somente esse documento será
-            re-indexado no RAG.
-          </div>
+            <i data-lucide="plus" style="width: 14px; height: 14px"></i>
+            Adicionar mais arquivos
+          </button>
+          <div
+            id="uploadQueueProgress"
+            style="font-size: 0.85rem; color: var(--text-secondary)"
+          ></div>
+        </div>
+        <div
+          style="
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            margin-bottom: 12px;
+          "
+        >
+          Arquivos com o mesmo nome já existentes na pasta da categoria serão
+          <strong>substituídos</strong> e re-indexados no RAG.
         </div>
         <div
           class="err-msg"
@@ -3919,7 +4072,155 @@
             Cancelar
           </button>
           <button class="btn-modal btn-confirm" id="uploadDocConfirmBtn">
-            Enviar
+            Enviar todos
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAG API Info Modal (admin) -->
+    <div
+      class="confirm-modal-backdrop"
+      id="ragApiInfoModal"
+      style="display: none"
+    >
+      <div
+        class="confirm-modal"
+        style="max-width: 720px; width: 95%; text-align: left"
+      >
+        <h3 class="confirm-title" style="display: flex; align-items: center; gap: 8px">
+          <i data-lucide="plug-zap" style="width: 20px; height: 20px"></i>
+          Integração via API — Envio de Documentos ao RAG
+        </h3>
+        <div
+          id="ragApiInfoBody"
+          style="
+            max-height: 60vh;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            line-height: 1.55;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+          "
+        >
+          <p style="color: var(--text-secondary)">
+            Se você quiser enviar documentos para a base de conhecimento
+            diretamente da sua aplicação (sem usar esta tela), faça uma
+            requisição HTTP para o webhook abaixo.
+          </p>
+
+          <div>
+            <div style="font-weight: 700; margin-bottom: 6px">Endpoint</div>
+            <pre
+              style="
+                background: rgba(0, 0, 0, 0.25);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                padding: 10px 12px;
+                overflow-x: auto;
+                font-size: 0.8rem;
+              "><code id="ragApiInfoEndpoint">POST {URL}</code></pre>
+          </div>
+
+          <div>
+            <div style="font-weight: 700; margin-bottom: 6px">
+              Parâmetros (multipart/form-data)
+            </div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem">
+              <thead>
+                <tr style="text-align: left; color: var(--text-secondary)">
+                  <th style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">Campo</th>
+                  <th style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">Tipo</th>
+                  <th style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">Descrição</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)"><code>data</code></td>
+                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">arquivo (binário)</td>
+                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">
+                    O arquivo a indexar (PDF, DOCX, XLSX, CSV, TXT...). <strong>Um arquivo por requisição.</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)"><code>categoria</code></td>
+                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">texto</td>
+                  <td style="padding: 6px 8px; border-bottom: 1px solid var(--border-color)">
+                    Código da categoria (ex.: <code>IT</code>). A categoria precisa existir e ter
+                    pasta do Google Drive configurada em <strong>Administração → Categorias</strong>.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div>
+            <div style="font-weight: 700; margin-bottom: 6px">Exemplo — cURL</div>
+            <pre
+              style="
+                background: rgba(0, 0, 0, 0.25);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                padding: 10px 12px;
+                overflow-x: auto;
+                font-size: 0.78rem;
+              "><code id="ragApiInfoCurl"></code></pre>
+          </div>
+
+          <div>
+            <div style="font-weight: 700; margin-bottom: 6px">
+              Exemplo — JavaScript (fetch)
+            </div>
+            <pre
+              style="
+                background: rgba(0, 0, 0, 0.25);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                padding: 10px 12px;
+                overflow-x: auto;
+                font-size: 0.78rem;
+              "><code id="ragApiInfoJs"></code></pre>
+          </div>
+
+          <div
+            style="
+              background: rgba(220, 38, 38, 0.08);
+              border: 1px solid rgba(220, 38, 38, 0.3);
+              border-radius: 8px;
+              padding: 10px 12px;
+              font-size: 0.8rem;
+              line-height: 1.5;
+            "
+          >
+            <strong>Importante — envie um arquivo de cada vez:</strong>
+            <ul style="margin: 6px 0 0 18px; display: flex; flex-direction: column; gap: 4px">
+              <li>
+                A indexação é pesada (upload ao Drive + extração + embeddings).
+                Aguarde a resposta de uma requisição antes de enviar a próxima
+                — <strong>não envie em paralelo</strong>.
+              </li>
+              <li>
+                A resposta pode demorar alguns minutos para arquivos grandes;
+                configure um timeout generoso (ex.: 5 minutos).
+              </li>
+              <li>
+                Se já existir arquivo com o mesmo nome na pasta da categoria,
+                ele será <strong>substituído</strong> e re-indexado
+                (comportamento de upsert).
+              </li>
+              <li>
+                Resposta de sucesso: HTTP 200 com JSON contendo
+                <code>action</code> (<code>insert</code> ou <code>replace</code>).
+                Qualquer status diferente de 200 indica falha.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="confirm-actions" style="margin-top: 14px">
+          <button class="btn-modal btn-confirm" id="ragApiInfoCloseBtn">
+            Fechar
           </button>
         </div>
       </div>
@@ -3933,6 +4234,17 @@
         breaks: true,
         gfm: true,
       });
+      // Open all markdown links (e.g. "Abrir documento") in a new tab
+      // instead of navigating the chat page away.
+      const mdRenderer = new marked.Renderer();
+      const mdRendererLink = mdRenderer.link.bind(mdRenderer);
+      mdRenderer.link = function (href, title, text) {
+        return mdRendererLink(href, title, text).replace(
+          /^<a /,
+          '<a target="_blank" rel="noopener noreferrer" '
+        );
+      };
+      marked.setOptions({ renderer: mdRenderer });
       const API_BASE = "https://longflatworm-n8n.cloudfy.live/webhook";
       const CHAT_URL = `${API_BASE}/zanaflex-AgentRag`;
       const UPLOAD_URL = `${API_BASE}/zanaflex-index-drive`;
@@ -4089,8 +4401,20 @@
         applySession(session);
         toggleLogin(true);
         appStarted = false;
+        // Captura a tela salva ANTES do startApp (loadSession reseta p/ chat)
+        const savedView =
+          typeof window.getSavedActiveView === "function"
+            ? window.getSavedActiveView()
+            : null;
+        if (typeof window.restoreActiveView === "function") {
+          window.restoreActiveView(savedView);
+        }
         if (typeof window.startApp === "function") {
-          window.startApp();
+          await window.startApp();
+        }
+        // Reaplica após o startApp, que pode ter restaurado o chat
+        if (typeof window.restoreActiveView === "function") {
+          window.restoreActiveView(savedView);
         }
       }
 
@@ -4168,6 +4492,9 @@
           appStarted = false;
           currentUserRole = null;
           currentUserId = null;
+          try {
+            localStorage.removeItem("zanaflex_active_view");
+          } catch (_) {}
         });
       }
 
@@ -6116,6 +6443,7 @@
         const up = document.getElementById("usersPage");
         up.style.display = "flex";
         document.getElementById("userFormPanel").style.display = "none";
+        saveActiveView("users");
         loadUsersPage();
         initFormMultiSelects();
       }
@@ -6135,6 +6463,7 @@
           (!teamPage || teamPage.style.display === "none")
         ) {
           chatArea.style.display = "";
+          saveActiveView("chat");
         }
       }
 
@@ -6308,6 +6637,56 @@
       // ============================================================
       // RAG DOCS MANAGEMENT (Admin only)
       // ============================================================
+
+      // ===== Persistência da tela ativa (sobrevive ao reload) =====
+      const ACTIVE_VIEW_KEY = "zanaflex_active_view";
+      function saveActiveView(view) {
+        try {
+          localStorage.setItem(ACTIVE_VIEW_KEY, view);
+        } catch (_) {}
+      }
+      function restoreActiveView(view) {
+        if (view === undefined) {
+          try {
+            view = localStorage.getItem(ACTIVE_VIEW_KEY);
+          } catch (_) {
+            view = null;
+          }
+        }
+        if (!view || view === "chat") return;
+        const cfg = window.AUTH_CONFIG;
+        const role =
+          typeof window.getCurrentUserRole === "function"
+            ? window.getCurrentUserRole()
+            : null;
+        // Todas as telas persistidas são admin-only
+        if (!cfg || role !== cfg.ADMIN_ROLE) return;
+        const map = {
+          ragDocs: { fn: showRagDocsPage, id: "ragDocsPage" },
+          users: { fn: showUsersPage, id: "usersPage" },
+          categories: { fn: showCategoriesPage, id: "categoriesAdminPage" },
+          teams: { fn: showTeamsPage, id: "teamsAdminPage" },
+        };
+        const entry = map[view];
+        if (!entry) return;
+        const pageEl = document.getElementById(entry.id);
+        if (pageEl && pageEl.style.display === "flex") {
+          // Já visível — só garante que o chat fique oculto e o estado salvo
+          document.getElementById("chatArea").style.display = "none";
+          saveActiveView(view);
+          return;
+        }
+        entry.fn();
+      }
+      window.restoreActiveView = restoreActiveView;
+      window.getSavedActiveView = function () {
+        try {
+          return localStorage.getItem(ACTIVE_VIEW_KEY);
+        } catch (_) {
+          return null;
+        }
+      };
+
       function showRagDocsPage() {
         hideUsersPage();
         hideCategoriesPage();
@@ -6316,6 +6695,7 @@
         const page = document.getElementById("ragDocsPage");
         if (!page) return;
         page.style.display = "flex";
+        saveActiveView("ragDocs");
         loadRagDocs();
       }
 
@@ -6331,6 +6711,7 @@
           document.getElementById("teamsAdminPage")?.style.display !== "flex"
         ) {
           chat.style.display = "";
+          saveActiveView("chat");
         }
       }
 
@@ -6343,6 +6724,7 @@
         const page = document.getElementById("categoriesAdminPage");
         if (!page) return;
         page.style.display = "flex";
+        saveActiveView("categories");
         loadCategoriesPage();
       }
       function hideCategoriesPage() {
@@ -6356,6 +6738,7 @@
           document.getElementById("teamsAdminPage")?.style.display !== "flex"
         ) {
           chat.style.display = "";
+          saveActiveView("chat");
         }
       }
 
@@ -6469,6 +6852,7 @@
         const page = document.getElementById("teamsAdminPage");
         if (!page) return;
         page.style.display = "flex";
+        saveActiveView("teams");
         loadTeamsPage();
       }
       function hideTeamsPage() {
@@ -6483,6 +6867,7 @@
             "flex"
         ) {
           chat.style.display = "";
+          saveActiveView("chat");
         }
       }
 
@@ -6847,6 +7232,15 @@
       // Estado de colapso por categoria (preserva durante recargas da página)
       const ragCollapsedCats = new Set();
 
+      // Busca e filtros da lista de documentos
+      let ragAllDocs = [];
+      let ragTeamsFetched = false;
+      const ragDocsFilters = {
+        search: "",
+        category: "__all__",
+        team: "__all__",
+      };
+
       async function loadRagDocs() {
         const loading = document.getElementById("ragDocsLoading");
         const table = document.getElementById("ragDocsTable");
@@ -6930,10 +7324,156 @@
             (d) =>
               !d.session_id || d.session_id === "" || d.session_id === null,
           );
-          if (countEl) countEl.textContent = "(" + docs.length + ")";
+          ragAllDocs = docs;
+          if (!ragTeamsFetched) {
+            ragTeamsFetched = true;
+            if (allTeams.length === 0) await fetchAllTeams();
+          }
+          populateRagDocFilters();
+          renderRagDocs();
+        } catch (err) {
+          setStatus("Erro ao carregar documentos do RAG", "error");
+          if (empty) {
+            empty.style.display = "block";
+            empty.innerHTML =
+              '<div style="font-size:2rem;margin-bottom:8px">⚠️</div>Falha ao carregar documentos.<br>Verifique se o endpoint <code>/zanaflex-rag-docs</code> está ativo no n8n.';
+          }
+        } finally {
+          if (loading) loading.style.display = "none";
+        }
+      }
+
+      function ragDocCatKey(doc) {
+        return String(
+          doc.category_id ||
+            doc.category_code ||
+            doc.category_name ||
+            "__uncat__",
+        );
+      }
+
+      function ragDocsHasActiveFilters() {
+        return (
+          (ragDocsFilters.search || "").trim() !== "" ||
+          ragDocsFilters.category !== "__all__" ||
+          ragDocsFilters.team !== "__all__"
+        );
+      }
+
+      function getRagFilteredDocs() {
+        let docs = ragAllDocs;
+        const q = (ragDocsFilters.search || "").trim().toLowerCase();
+        if (q) {
+          docs = docs.filter((d) =>
+            String(d.title || d.id || "")
+              .toLowerCase()
+              .includes(q),
+          );
+        }
+        if (ragDocsFilters.category !== "__all__") {
+          docs = docs.filter(
+            (d) => ragDocCatKey(d) === ragDocsFilters.category,
+          );
+        }
+        if (ragDocsFilters.team !== "__all__") {
+          const team = allTeams.find(
+            (t) => String(t.id) === ragDocsFilters.team,
+          );
+          const catIds = new Set(
+            ((team && team.category_ids) || []).map(String),
+          );
+          docs = docs.filter(
+            (d) => d.category_id && catIds.has(String(d.category_id)),
+          );
+        }
+        return docs;
+      }
+
+      function populateRagDocFilters() {
+        const catSel = document.getElementById("ragDocsCategoryFilter");
+        if (catSel) {
+          const prev = ragDocsFilters.category;
+          const cats = new Map();
+          ragAllDocs.forEach((d) => {
+            const key = ragDocCatKey(d);
+            const label =
+              d.category_name || d.category_code || "Sem categoria";
+            if (!cats.has(key)) cats.set(key, label);
+          });
+          const opts = ['<option value="__all__">Todas as categorias</option>'];
+          Array.from(cats.entries())
+            .sort((a, b) => a[1].localeCompare(b[1], "pt-BR"))
+            .forEach(([k, l]) =>
+              opts.push(
+                `<option value="${escapeHtml(k)}">${escapeHtml(l)}</option>`,
+              ),
+            );
+          catSel.innerHTML = opts.join("");
+          catSel.value =
+            prev === "__all__" || cats.has(prev) ? prev : "__all__";
+          ragDocsFilters.category = catSel.value;
+        }
+        const teamSel = document.getElementById("ragDocsTeamFilter");
+        if (teamSel) {
+          if (allTeams.length === 0) {
+            // Sem equipes visíveis (usuário não-admin ou nenhuma cadastrada)
+            teamSel.style.display = "none";
+            ragDocsFilters.team = "__all__";
+          } else {
+            teamSel.style.display = "";
+            const prev = ragDocsFilters.team;
+            const opts = ['<option value="__all__">Todas as equipes</option>'];
+            allTeams
+              .slice()
+              .sort((a, b) =>
+                String(a.name).localeCompare(String(b.name), "pt-BR"),
+              )
+              .forEach((t) =>
+                opts.push(
+                  `<option value="${escapeHtml(String(t.id))}">${escapeHtml(t.name)}</option>`,
+                ),
+              );
+            teamSel.innerHTML = opts.join("");
+            teamSel.value = allTeams.some((t) => String(t.id) === prev)
+              ? prev
+              : "__all__";
+            ragDocsFilters.team = teamSel.value;
+          }
+        }
+        updateRagClearFiltersBtn();
+      }
+
+      function updateRagClearFiltersBtn() {
+        const btn = document.getElementById("ragDocsClearFiltersBtn");
+        if (btn)
+          btn.style.display = ragDocsHasActiveFilters() ? "inline-flex" : "none";
+      }
+
+      function renderRagDocs() {
+        const table = document.getElementById("ragDocsTable");
+        const empty = document.getElementById("ragDocsEmpty");
+        const tbody = document.getElementById("ragDocsTableBody");
+        const countEl = document.getElementById("ragDocsCount");
+        if (!tbody) return;
+        const docs = getRagFilteredDocs();
+        const hasFilters = ragDocsHasActiveFilters();
+        updateRagClearFiltersBtn();
+        if (countEl) {
+          countEl.textContent = hasFilters
+            ? "(" + docs.length + " de " + ragAllDocs.length + ")"
+            : "(" + ragAllDocs.length + ")";
+          }
           tbody.innerHTML = "";
+          if (empty) empty.style.display = "none";
+          if (table) table.style.display = "none";
           if (docs.length === 0) {
-            if (empty) empty.style.display = "block";
+            if (empty) {
+              empty.innerHTML = hasFilters
+                ? '<div style="font-size:2rem;margin-bottom:8px">🔍</div>Nenhum documento corresponde à busca/filtros.'
+                : '<div style="font-size:2rem;margin-bottom:8px">📁</div>Nenhum documento na base de conhecimento.<br />Clique em <strong>Adicionar Documento</strong> para começar.';
+              empty.style.display = "block";
+            }
+            updateRagBulkBar();
             return;
           }
           // Agrupa por categoria
@@ -7093,16 +7633,6 @@
             };
           }
           updateRagBulkBar();
-        } catch (err) {
-          setStatus("Erro ao carregar documentos do RAG", "error");
-          if (empty) {
-            empty.style.display = "block";
-            empty.innerHTML =
-              '<div style="font-size:2rem;margin-bottom:8px">⚠️</div>Falha ao carregar documentos.<br>Verifique se o endpoint <code>/zanaflex-rag-docs</code> está ativo no n8n.';
-          }
-        } finally {
-          if (loading) loading.style.display = "none";
-        }
       }
 
       async function confirmDeleteRagDoc(fileId, title) {
@@ -7210,138 +7740,308 @@
           .slice(0, 96);
       }
 
-      // ===== Modal de categoria para upload =====
-      function openUploadDocModal(file) {
-        return new Promise(async (resolve) => {
-          // Garante categorias carregadas
-          try {
-            if (allCategories.length === 0) await fetchAllCategories();
-          } catch (_) {}
+      // ===== Fila de upload multi-arquivo =====
+      const uploadQueue = {
+        items: [], // [{file, category, status: pending|uploading|done|error, error}]
+        uploading: false,
+        finished: false,
+      };
 
-          const modal = document.getElementById("uploadDocModal");
-          const select = document.getElementById("uploadDocCategorySelect");
-          const label = document.getElementById("uploadDocFileLabel");
-          const hint = document.getElementById("uploadDocCategoryHint");
-          const errEl = document.getElementById("uploadDocModalError");
-          const cancelBtn = document.getElementById("uploadDocCancelBtn");
-          const confirmBtn = document.getElementById("uploadDocConfirmBtn");
-
-          // Populate options (categoria precisa ter drive_folder_id)
-          const usable = (allCategories || []).filter(
-            (c) =>
-              c.drive_folder_id && String(c.drive_folder_id).trim().length > 0,
-          );
-          select.innerHTML = "";
-          if (usable.length === 0) {
-            const opt = document.createElement("option");
-            opt.value = "";
-            opt.textContent =
-              "— Nenhuma categoria com pasta Drive configurada —";
-            select.appendChild(opt);
-            select.disabled = true;
-            confirmBtn.disabled = true;
-            hint.textContent =
-              "Cadastre uma categoria com ID da pasta do Google Drive em Categorias antes de enviar.";
-          } else {
-            select.disabled = false;
-            confirmBtn.disabled = false;
-            usable.forEach((c) => {
-              const opt = document.createElement("option");
-              opt.value = c.code;
-              opt.textContent = c.name ? `${c.code} — ${c.name}` : c.code;
-              select.appendChild(opt);
-            });
-            // Default: 'IT' se existir, senão a primeira
-            const def = usable.find((c) => c.code === "IT") || usable[0];
-            select.value = def.code;
-            hint.textContent = `${usable.length} categoria(s) disponível(is). O documento irá para a pasta vinculada.`;
-          }
-
-          label.innerHTML =
-            "Arquivo: <strong>" + escapeHtml(file.name) + "</strong>";
-          errEl.style.display = "none";
-          errEl.textContent = "";
-          modal.style.display = "flex";
-
-          const cleanup = () => {
-            modal.style.display = "none";
-            cancelBtn.removeEventListener("click", onCancel);
-            confirmBtn.removeEventListener("click", onConfirm);
-            modal.removeEventListener("click", onBackdrop);
-            document.removeEventListener("keydown", onKey);
-          };
-          const onCancel = () => {
-            cleanup();
-            resolve(null);
-          };
-          const onConfirm = () => {
-            const code = (select.value || "").trim();
-            if (!code) {
-              errEl.textContent = "Selecione uma categoria.";
-              errEl.style.display = "block";
-              return;
-            }
-            cleanup();
-            resolve(code);
-          };
-          const onBackdrop = (e) => {
-            if (e.target === modal) onCancel();
-          };
-          const onKey = (e) => {
-            if (e.key === "Escape") onCancel();
-            else if (e.key === "Enter") onConfirm();
-          };
-          cancelBtn.addEventListener("click", onCancel);
-          confirmBtn.addEventListener("click", onConfirm);
-          modal.addEventListener("click", onBackdrop);
-          document.addEventListener("keydown", onKey);
-          setTimeout(() => {
-            try {
-              select.focus();
-            } catch (_) {}
-          }, 50);
-        });
+      function ragUsableCategories() {
+        return (allCategories || []).filter(
+          (c) =>
+            c.drive_folder_id && String(c.drive_folder_id).trim().length > 0,
+        );
       }
 
-      async function uploadRagDoc(file) {
-        if (!file) return;
-        try {
-          const categoryCode = await openUploadDocModal(file);
-          if (!categoryCode) return; // user cancelled
-          showRagBusy(
-            `Indexando "${file.name}"... isso pode levar alguns minutos.`,
-          );
-          setStatus(`Indexando ${file.name}... (pode demorar)`, "warning");
-          const formData = new FormData();
-          formData.append("data", file);
-          formData.append("categoria", categoryCode);
-          const resp = await fetch(RAG_UPLOAD_URL, {
-            method: "POST",
-            body: formData,
-          });
-          if (!resp.ok) {
-            const txt = await resp.text().catch(() => "");
-            throw new Error("Upload failed: " + (txt || resp.status));
+      function ragCategoryOptionsHtml(selected) {
+        return ragUsableCategories()
+          .map(
+            (c) =>
+              `<option value="${escapeHtml(c.code)}"${
+                c.code === selected ? " selected" : ""
+              }>${escapeHtml(c.name ? c.code + " — " + c.name : c.code)}</option>`,
+          )
+          .join("");
+      }
+
+      function fmtFileSize(bytes) {
+        if (bytes == null) return "";
+        const u = ["B", "KB", "MB", "GB"];
+        let i = 0,
+          v = bytes;
+        while (v >= 1024 && i < u.length - 1) {
+          v /= 1024;
+          i++;
+        }
+        return v.toFixed(v >= 10 || i === 0 ? 0 : 1) + " " + u[i];
+      }
+
+      function renderUploadQueue() {
+        const list = document.getElementById("uploadQueueList");
+        const progress = document.getElementById("uploadQueueProgress");
+        const confirmBtn = document.getElementById("uploadDocConfirmBtn");
+        const cancelBtn = document.getElementById("uploadDocCancelBtn");
+        const applyAllBtn = document.getElementById("uploadDocApplyAllBtn");
+        const addMoreBtn = document.getElementById("uploadDocAddMoreBtn");
+        const allSel = document.getElementById("uploadDocCategoryAll");
+        if (!list) return;
+        const items = uploadQueue.items;
+        const busy = uploadQueue.uploading;
+
+        list.innerHTML = items
+          .map((it, i) => {
+            let statusHtml;
+            if (it.status === "uploading") {
+              statusHtml =
+                '<div style="width:16px;height:16px;border:2px solid var(--color-primary);border-top-color:transparent;border-radius:50%;animation:ragSpin 1s linear infinite;flex-shrink:0" title="Enviando..."></div>';
+            } else if (it.status === "done") {
+              statusHtml =
+                '<i data-lucide="check-circle-2" style="width:18px;height:18px;color:#16a34a;flex-shrink:0"></i>';
+            } else if (it.status === "error") {
+              statusHtml =
+                '<i data-lucide="alert-circle" style="width:18px;height:18px;color:#dc2626;flex-shrink:0"></i>';
+            } else {
+              statusHtml = busy
+                ? '<span style="font-size:11px;color:var(--text-secondary);flex-shrink:0">na fila</span>'
+                : `<button type="button" class="upload-q-remove" data-idx="${i}" title="Remover da fila" style="background:none;border:none;cursor:pointer;color:var(--text-secondary);padding:4px;flex-shrink:0"><i data-lucide="x" style="width:16px;height:16px"></i></button>`;
+            }
+            const catDisabled =
+              busy || it.status === "done" || it.status === "uploading";
+            return `
+              <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--border-color);border-radius:8px;background:var(--bg-chat)">
+                <i data-lucide="file-text" style="width:18px;height:18px;color:var(--text-secondary);flex-shrink:0"></i>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:0.85rem;font-weight:500;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${escapeHtml(it.file.name)}">${escapeHtml(it.file.name)}</div>
+                  <div style="font-size:0.72rem;color:var(--text-secondary)">${fmtFileSize(it.file.size)}</div>
+                  ${
+                    it.status === "error" && it.error
+                      ? `<div style="font-size:0.72rem;color:#dc2626;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${escapeHtml(it.error)}">${escapeHtml(it.error)}</div>`
+                      : ""
+                  }
+                </div>
+                <select class="upload-q-cat" data-idx="${i}" ${catDisabled ? "disabled" : ""} style="max-width:200px;padding:6px 8px;border-radius:6px;background:var(--bg-input,#1f1f1f);color:var(--text-primary);border:1px solid var(--border-color);font-size:0.8rem">
+                  ${ragCategoryOptionsHtml(it.category)}
+                </select>
+                ${statusHtml}
+              </div>`;
+          })
+          .join("");
+
+        const doneN = items.filter((it) => it.status === "done").length;
+        const errN = items.filter((it) => it.status === "error").length;
+        const pendN = items.filter((it) => it.status === "pending").length;
+        if (progress) {
+          if (busy) {
+            progress.textContent = `Enviando ${doneN + errN + 1} de ${items.length}...`;
+          } else if (uploadQueue.finished) {
+            progress.textContent =
+              errN > 0
+                ? `Concluído: ${doneN} ok, ${errN} erro(s)`
+                : `Concluído: ${doneN} documento(s) indexado(s)`;
+          } else {
+            progress.textContent = items.length + " arquivo(s) na fila";
           }
-          let result = null;
-          try {
-            result = await resp.json();
-          } catch (_) {}
-          const action =
-            result && result.action === "replace"
-              ? "substituído"
-              : "adicionado";
-          setStatus(`${file.name} ${action} no RAG!`, "success");
-          await loadRagDocs();
-        } catch (err) {
+        }
+
+        if (confirmBtn) {
+          if (busy) {
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = "Enviando...";
+          } else if (errN > 0) {
+            confirmBtn.disabled = false;
+            confirmBtn.textContent = `Tentar novamente (${errN})`;
+          } else if (uploadQueue.finished || items.length === 0) {
+            confirmBtn.disabled = items.length === 0 && !uploadQueue.finished;
+            confirmBtn.textContent = "Fechar";
+          } else {
+            confirmBtn.disabled = pendN === 0;
+            confirmBtn.textContent = `Enviar todos (${pendN})`;
+          }
+        }
+        if (cancelBtn) {
+          cancelBtn.disabled = busy;
+          cancelBtn.style.display = uploadQueue.finished ? "none" : "";
+        }
+        if (applyAllBtn) applyAllBtn.disabled = busy;
+        if (addMoreBtn) addMoreBtn.disabled = busy;
+        if (allSel) allSel.disabled = busy;
+        lucide.createIcons();
+      }
+
+      async function openUploadQueueModal(files) {
+        try {
+          if (allCategories.length === 0) await fetchAllCategories();
+        } catch (_) {}
+        const usable = ragUsableCategories();
+        if (usable.length === 0) {
           setStatus(
-            `Erro ao indexar ${file.name}: ${err.message || err}`,
+            "Nenhuma categoria com pasta Drive configurada. Cadastre em Categorias.",
             "error",
           );
-        } finally {
-          hideRagBusy();
+          return;
+        }
+        const modal = document.getElementById("uploadDocModal");
+        const errEl = document.getElementById("uploadDocModalError");
+        const allSel = document.getElementById("uploadDocCategoryAll");
+        const defCat = (usable.find((c) => c.code === "IT") || usable[0]).code;
+
+        // Se a fila anterior já terminou, começa limpa
+        if (uploadQueue.finished && !uploadQueue.uploading) {
+          uploadQueue.items = [];
+          uploadQueue.finished = false;
+        }
+
+        (files || []).forEach((f) => {
+          const dup = uploadQueue.items.some(
+            (it) => it.file.name === f.name && it.file.size === f.size,
+          );
+          if (!dup)
+            uploadQueue.items.push({
+              file: f,
+              category: allSel && allSel.value ? allSel.value : defCat,
+              status: "pending",
+              error: null,
+            });
+        });
+
+        if (allSel && !allSel.options.length) {
+          allSel.innerHTML = ragCategoryOptionsHtml(defCat);
+        } else if (allSel) {
+          const cur = allSel.value;
+          allSel.innerHTML = ragCategoryOptionsHtml(cur || defCat);
+        }
+        if (errEl) {
+          errEl.style.display = "none";
+          errEl.textContent = "";
+        }
+        modal.style.display = "flex";
+        renderUploadQueue();
+      }
+
+      function closeUploadQueueModal() {
+        if (uploadQueue.uploading) return;
+        const modal = document.getElementById("uploadDocModal");
+        if (modal) modal.style.display = "none";
+        uploadQueue.items = [];
+        uploadQueue.finished = false;
+      }
+
+      async function uploadSingleRagFile(file, categoryCode) {
+        const formData = new FormData();
+        formData.append("data", file);
+        formData.append("categoria", categoryCode);
+        const resp = await fetch(RAG_UPLOAD_URL, {
+          method: "POST",
+          body: formData,
+        });
+        if (!resp.ok) {
+          const txt = await resp.text().catch(() => "");
+          throw new Error(txt || "HTTP " + resp.status);
+        }
+        try {
+          return await resp.json();
+        } catch (_) {
+          return null;
         }
       }
+
+      async function startUploadQueue() {
+        if (uploadQueue.uploading) return;
+        const todo = uploadQueue.items.filter(
+          (it) => it.status === "pending" || it.status === "error",
+        );
+        if (todo.length === 0) return;
+        uploadQueue.uploading = true;
+        uploadQueue.finished = false;
+        renderUploadQueue();
+        for (const item of todo) {
+          item.status = "uploading";
+          item.error = null;
+          renderUploadQueue();
+          try {
+            await uploadSingleRagFile(item.file, item.category);
+            item.status = "done";
+          } catch (e) {
+            item.status = "error";
+            item.error = e.message || String(e);
+          }
+          renderUploadQueue();
+        }
+        uploadQueue.uploading = false;
+        uploadQueue.finished = true;
+        renderUploadQueue();
+        const errN = uploadQueue.items.filter(
+          (it) => it.status === "error",
+        ).length;
+        const doneN = uploadQueue.items.filter(
+          (it) => it.status === "done",
+        ).length;
+        setStatus(
+          errN > 0
+            ? `Fila concluída: ${doneN} indexado(s), ${errN} erro(s).`
+            : `${doneN} documento(s) indexado(s) no RAG!`,
+          errN > 0 ? "error" : "success",
+        );
+        await loadRagDocs();
+      }
+
+      // Eventos da fila (registrados uma vez)
+      (function wireUploadQueueModal() {
+        const modal = document.getElementById("uploadDocModal");
+        const list = document.getElementById("uploadQueueList");
+        const cancelBtn = document.getElementById("uploadDocCancelBtn");
+        const confirmBtn = document.getElementById("uploadDocConfirmBtn");
+        const applyAllBtn = document.getElementById("uploadDocApplyAllBtn");
+        const addMoreBtn = document.getElementById("uploadDocAddMoreBtn");
+        const allSel = document.getElementById("uploadDocCategoryAll");
+        if (!modal || !list) return;
+        list.addEventListener("change", (e) => {
+          if (e.target.classList.contains("upload-q-cat")) {
+            const it = uploadQueue.items[+e.target.dataset.idx];
+            if (it) it.category = e.target.value;
+          }
+        });
+        list.addEventListener("click", (e) => {
+          const btn = e.target.closest(".upload-q-remove");
+          if (btn && !uploadQueue.uploading) {
+            uploadQueue.items.splice(+btn.dataset.idx, 1);
+            renderUploadQueue();
+          }
+        });
+        if (cancelBtn)
+          cancelBtn.addEventListener("click", closeUploadQueueModal);
+        if (confirmBtn)
+          confirmBtn.addEventListener("click", () => {
+            const hasTodo = uploadQueue.items.some(
+              (it) => it.status === "pending" || it.status === "error",
+            );
+            if (hasTodo) startUploadQueue();
+            else closeUploadQueueModal();
+          });
+        if (applyAllBtn && allSel)
+          applyAllBtn.addEventListener("click", () => {
+            const code = allSel.value;
+            if (!code) return;
+            uploadQueue.items.forEach((it) => {
+              if (it.status === "pending" || it.status === "error")
+                it.category = code;
+            });
+            renderUploadQueue();
+          });
+        if (addMoreBtn)
+          addMoreBtn.addEventListener("click", () => {
+            const input = document.getElementById("ragDocFileInput");
+            if (input) input.click();
+          });
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeUploadQueueModal();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modal.style.display === "flex")
+            closeUploadQueueModal();
+        });
+      })();
 
       // ===== Overlay de "trabalhando..." para operações longas do RAG =====
       function showRagBusy(message) {
@@ -7380,6 +8080,98 @@
       if (ragDocsRefreshBtn) {
         ragDocsRefreshBtn.addEventListener("click", loadRagDocs);
       }
+      // ===== Modal de info da API de upload (admin) =====
+      (function wireRagApiInfoModal() {
+        const btn = document.getElementById("ragApiInfoBtn");
+        const modal = document.getElementById("ragApiInfoModal");
+        const closeBtn = document.getElementById("ragApiInfoCloseBtn");
+        if (!btn || !modal) return;
+        const endpointEl = document.getElementById("ragApiInfoEndpoint");
+        const curlEl = document.getElementById("ragApiInfoCurl");
+        const jsEl = document.getElementById("ragApiInfoJs");
+        const open = () => {
+          if (endpointEl) endpointEl.textContent = "POST " + RAG_UPLOAD_URL;
+          if (curlEl)
+            curlEl.textContent = [
+              "curl -X POST \\",
+              '  "' + RAG_UPLOAD_URL + '" \\',
+              '  -F "data=@/caminho/do/arquivo.pdf" \\',
+              '  -F "categoria=IT" \\',
+              "  --max-time 300",
+            ].join("\n");
+          if (jsEl)
+            jsEl.textContent = [
+              "// Envie UM arquivo por vez e aguarde a resposta",
+              "async function enviarDocumento(file, categoria) {",
+              "  const formData = new FormData();",
+              '  formData.append("data", file); // File ou Blob',
+              '  formData.append("categoria", categoria); // ex.: "IT"',
+              "",
+              '  const resp = await fetch("' + RAG_UPLOAD_URL + '", {',
+              '    method: "POST",',
+              "    body: formData,",
+              "  });",
+              "  if (!resp.ok) throw new Error(await resp.text());",
+              '  return resp.json(); // { action: "insert" | "replace", ... }',
+              "}",
+              "",
+              "// Para vários arquivos: sequencial, nunca em paralelo",
+              "for (const file of meusArquivos) {",
+              '  await enviarDocumento(file, "IT");',
+              "}",
+            ].join("\n");
+          modal.style.display = "flex";
+          lucide.createIcons();
+        };
+        const close = () => {
+          modal.style.display = "none";
+        };
+        btn.addEventListener("click", open);
+        if (closeBtn) closeBtn.addEventListener("click", close);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) close();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modal.style.display === "flex") close();
+        });
+      })();
+      const ragDocsSearchInput = document.getElementById("ragDocsSearchInput");
+      if (ragDocsSearchInput) {
+        ragDocsSearchInput.addEventListener("input", () => {
+          ragDocsFilters.search = ragDocsSearchInput.value;
+          renderRagDocs();
+        });
+      }
+      const ragDocsCategoryFilter = document.getElementById(
+        "ragDocsCategoryFilter",
+      );
+      if (ragDocsCategoryFilter) {
+        ragDocsCategoryFilter.addEventListener("change", () => {
+          ragDocsFilters.category = ragDocsCategoryFilter.value;
+          renderRagDocs();
+        });
+      }
+      const ragDocsTeamFilter = document.getElementById("ragDocsTeamFilter");
+      if (ragDocsTeamFilter) {
+        ragDocsTeamFilter.addEventListener("change", () => {
+          ragDocsFilters.team = ragDocsTeamFilter.value;
+          renderRagDocs();
+        });
+      }
+      const ragDocsClearFiltersBtn = document.getElementById(
+        "ragDocsClearFiltersBtn",
+      );
+      if (ragDocsClearFiltersBtn) {
+        ragDocsClearFiltersBtn.addEventListener("click", () => {
+          ragDocsFilters.search = "";
+          ragDocsFilters.category = "__all__";
+          ragDocsFilters.team = "__all__";
+          if (ragDocsSearchInput) ragDocsSearchInput.value = "";
+          if (ragDocsCategoryFilter) ragDocsCategoryFilter.value = "__all__";
+          if (ragDocsTeamFilter) ragDocsTeamFilter.value = "__all__";
+          renderRagDocs();
+        });
+      }
       const ragDocUploadBtn = document.getElementById("ragDocUploadBtn");
       const ragDocFileInput = document.getElementById("ragDocFileInput");
       if (ragDocUploadBtn && ragDocFileInput) {
@@ -7387,9 +8179,9 @@
           ragDocFileInput.click(),
         );
         ragDocFileInput.addEventListener("change", async (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
-          await uploadRagDoc(file);
+          const files = Array.from(e.target.files || []);
+          if (files.length === 0) return;
+          await openUploadQueueModal(files);
           ragDocFileInput.value = ""; // reset
         });
       }
