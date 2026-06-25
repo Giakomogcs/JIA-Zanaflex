@@ -1,0 +1,14 @@
+flowchart LR
+    A["Drive: download por file_id"] --> B{"Switch por mimeType"}
+    B -- PDF --> C["Extract PDF Text"]
+    C -- vazio --> C2["OCR via Azure Responses (gpt-5.4-mini visao)"]
+    B -- XLSX/CSV --> D["Extract -> zanaflex_document_rows"]
+    B -- "Google Doc/outros" --> E["Extract generico"]
+    C --> F["Limpeza de texto"]
+    C2 --> F
+    D --> F
+    E --> F
+    F --> G["DELETE chunks WHERE file_id"]
+    G --> H["Chunk + Embeddings (text-embedding-3-small)"]
+    H --> I["Insert em zanaflex_documents"]
+    I --> J["upsert em zanaflex_document_metadata"]

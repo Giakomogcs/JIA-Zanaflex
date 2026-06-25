@@ -1,0 +1,9 @@
+erDiagram
+    auth_users ||--o{ zanaflex_team_members : participa
+    zanaflex_teams ||--o{ zanaflex_team_members : tem
+    zanaflex_teams ||--o{ zanaflex_team_category_access : libera
+    zanaflex_document_categories ||--o{ zanaflex_team_category_access : acessada_por
+    zanaflex_document_categories ||--o{ zanaflex_document_metadata : classifica
+    zanaflex_document_metadata ||--o{ zanaflex_document_rows : tem
+    zanaflex_document_metadata ||--o{ zanaflex_documents : gera_chunks
+    auth_users ||--o{ zanaflex_chat_message : autor

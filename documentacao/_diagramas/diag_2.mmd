@@ -1,0 +1,11 @@
+flowchart TD
+    subgraph Browser["Navegador — front-zanaflex.html (SPA)"]
+        Chat["Chat"]
+        Admin["Paineis Admin: Usuarios, Equipes, Categorias, Documentos"]
+    end
+    Browser -- "Auth (Supabase JS SDK)" --> SB[("Supabase\nPostgres + pgvector + Auth + Storage")]
+    Browser -- "Webhooks HTTP" --> N8N["n8n — 7 workflows"]
+    N8N -- "SQL / RPC" --> SB
+    N8N -- "embeddings + chat + OCR" --> AZ["Azure OpenAI"]
+    N8N -- "download / upload PDFs" --> GD["Google Drive"]
+    ERP["ERP Zanaflex"] -- "POST rag-upload" --> N8N

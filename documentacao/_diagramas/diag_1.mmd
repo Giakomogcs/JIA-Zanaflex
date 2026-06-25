@@ -1,0 +1,18 @@
+sequenceDiagram
+    actor U as Colaborador
+    participant F as Front (SPA)
+    participant N as n8n (Agent-IA)
+    participant DB as Supabase + pgvector
+    participant AI as Azure OpenAI
+    U->>F: Digita a pergunta no chat
+    F->>N: POST /zanaflex-AgentRag {sessionId, userId, message}
+    N->>N: Prepare Input antepoe [CONTEXTO DO USUARIO ... ID="uuid"]
+    N->>DB: Carrega historico da sessao (Postgres Chat Memory)
+    N->>AI: Agente LangChain decide a tool
+    N->>AI: Embedding da pergunta
+    N->>DB: zanaflex_match_documents_for_user(userId, embedding, k, filter)
+    DB-->>N: Trechos filtrados pela ACL do usuario
+    N->>AI: Compoe resposta citando as fontes
+    AI-->>N: Resposta final
+    N-->>F: Texto da resposta
+    F-->>U: Mostra resposta + salva mensagem (trigger grava user_id)
